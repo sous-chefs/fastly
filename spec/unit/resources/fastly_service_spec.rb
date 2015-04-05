@@ -16,16 +16,7 @@
 # limitations under the License.
 #
 
-require 'chef/resource/lwrp_base'
+require 'libraries/resource_fastly_service'
 
-class Chef
-  class Resource
-    class FastlyService < Chef::Resource::LWRPBase
-
-      self.resource_name = :fastly_service
-      actions :create
-      default_action :create
-
-    end
-  end
+describe Chef::Resource::FastlyService do
 end
