@@ -8,16 +8,17 @@ require 'spec_helper'
 
 describe 'fastly::default' do
 
-  context 'When all attributes are default, on an unspecified platform' do
-
-    let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
-      runner.converge(described_recipe)
-    end
-
-    it 'converges successfully' do
-      chef_run # This should not raise an error
-    end
-
+  let(:chef_run) do
+    runner = ChefSpec::SoloRunner.new
+    runner.converge(described_recipe)
   end
+
+  it 'installs the fastly gem in the compile phase' do
+    expect(chef_run).to install_chef_gem('fastly')
+  end
+
+  it 'converges successfully' do
+    chef_run # This should not raise an error
+  end
+
 end
