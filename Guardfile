@@ -1,4 +1,4 @@
-guard :rspec, cmd: 'rspec 2>/dev/null' do
+guard :rspec, cmd: 'rspec' do
   watch(%r{^spec/unit/.+_spec\.rb$})
   watch(%r{^libraries/(.+)\.rb$})
   watch(%r{^recipes/(.+)\.rb$})

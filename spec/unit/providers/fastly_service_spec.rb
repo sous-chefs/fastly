@@ -17,4 +17,22 @@
 #
 
 require 'spec_helper'
+require 'libraries/provider_fastly_service'
+require 'libraries/resource_fastly_service'
 
+describe Chef::Provider::FastlyService do
+  before(:each) do
+    @node = Chef::Node.new
+    @events = Chef::EventDispatch::Dispatcher.new
+    @run_context = Chef::RunContext.new(@node, {}, @events)
+
+    @new_resource = Chef::Resource::FastlyService.new('service_name')
+
+    @current_resource = Chef::Resource::FastlyService.new('service_name')
+
+    @provider = Chef::Provider::FastlyService.new(@new_resource, @run_context)
+    @provider.current_resource = @current_resource
+
+  end
+
+end

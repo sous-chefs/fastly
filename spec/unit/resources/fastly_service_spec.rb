@@ -16,7 +16,25 @@
 # limitations under the License.
 #
 
+require 'spec_helper'
 require 'libraries/resource_fastly_service'
 
 describe Chef::Resource::FastlyService do
+
+  before(:each) do
+    @resource = Chef::Resource::FastlyService.new('service_name')
+  end
+
+  it "should have the name set" do
+    expect(@resource.name).to eq('service_name')
+  end
+
+  it "should let you set the name string" do
+    expect(@resource.name('new_service_name')).to eq('new_service_name')
+  end
+
+  it "should set the resource_name to :fastly_service" do
+    expect(@resource.resource_name).to eq(:fastly_service)
+  end
+
 end
