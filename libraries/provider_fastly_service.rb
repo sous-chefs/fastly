@@ -30,7 +30,14 @@ class Chef
       end
 
       action :create do
-        service ||= create_service
+        if service 
+          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+        else
+          create_service
+          Chef::Log.info "#{ @new_resource } created."
+          new_resource.updated_by_last_action(true)
+        end
+
       end
 
       action :activate_latest do
