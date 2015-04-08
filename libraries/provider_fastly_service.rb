@@ -17,7 +17,6 @@
 #
 
 require 'chef/provider/lwrp_base'
-require 'fastly'
 
 class Chef
   class Provider
@@ -62,6 +61,7 @@ class Chef
 
       def fastly_client
         unless @fastly_client
+          require 'fastly'
           @fastly_client = Fastly.new(get_auth_hash)
         end
         @fastly_client
