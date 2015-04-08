@@ -32,4 +32,4 @@ suites:
     - recipe[fastly_test::service]
   attributes:
     fastly:
-      api_key: <%= ENV['FASTLY_API_KEY'] %>
+      api_key: <%= ENV.fetch('FASTLY_API_KEY') %>
