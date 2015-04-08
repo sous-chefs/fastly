@@ -17,7 +17,6 @@
 #
 
 require 'chef/provider/lwrp_base'
-require 'fastly'
 
 class Chef
   class Provider
@@ -30,7 +29,14 @@ class Chef
       end
 
       action :create do
-        service ||= create_service
+        if service 
+          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+        else
+          create_service
+          Chef::Log.info "#{ @new_resource } created."
+          new_resource.updated_by_last_action(true)
+        end
+
       end
 
       action :activate_latest do
@@ -55,6 +61,7 @@ class Chef
 
       def fastly_client
         unless @fastly_client
+          require 'fastly'
           @fastly_client = Fastly.new(get_auth_hash)
         end
         @fastly_client

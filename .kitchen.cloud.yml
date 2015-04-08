@@ -26,3 +26,10 @@ suites:
   run_list:
     - recipe[fastly::default]
   attributes: {}
+
+- name: service
+  run_list:
+    - recipe[fastly_test::service]
+  attributes:
+    fastly:
+      api_key: <%= ENV['FASTLY_API_KEY'] %>
