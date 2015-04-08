@@ -1,0 +1,9 @@
+{
+  "id": "hipchat",
+  "default": {
+    "encrypted_data": "qSKf0n/MpXeErZplwZ/CkXYH8anEKvXDIwSf9o3xbL8kdnlxvVpkW7R+Dvte\nqpyo5jlbYgzcBYYnE54U5FEExr7FxKS8KTIWS6YcPjQnuvc=\n",
+    "iv": "tpJQd0p/vcSPal+udipu8Q==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}
