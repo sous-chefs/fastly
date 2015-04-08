@@ -18,4 +18,4 @@ include_recipe 'build-cookbook::_handler'
 
 chef_gem 'fastly' do
   action :install
-end.run_action(:install)
+end
