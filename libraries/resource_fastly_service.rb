@@ -23,8 +23,12 @@ class Chef
     class FastlyService < Chef::Resource::LWRPBase
 
       self.resource_name = :fastly_service
-      actions :create
+      actions :create, :activate_latest, :purge_all
       default_action :create
+
+      attribute :username, kind_of: String, default: nil
+      attribute :password, kind_of: String, default: nil
+      attribute :api_key, kind_of: String, default: nil
 
     end
   end

@@ -37,4 +37,16 @@ describe Chef::Resource::FastlyService do
     expect(@resource.resource_name).to eq(:fastly_service)
   end
 
+  it "should allow the username to be set" do
+    expect(@resource.username('an_username')).to eq('an_username')
+  end
+
+  it "should allow the password to be set" do
+    expect(@resource.password('an_password')).to eq('an_password')
+  end
+
+  it "should allow the api_key to be set" do
+    expect(@resource.api_key('an_api_key')).to eq('an_api_key')
+  end
+
 end
