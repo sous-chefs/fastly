@@ -28,3 +28,7 @@ end
 def make_link(url)
   "<a href=\"#{url}\">#{url}</a>"
 end
+
+def change_url
+  "https://delivery.chef.co/e/#{node['delivery']['change']['enterprise']}/#/organizations/#{node['delivery']['change']['organization']}/projects/#{node['delivery']['change']['project']}/changes/#{node['delivery']['change']['change_id']}/status/verify"
+end
