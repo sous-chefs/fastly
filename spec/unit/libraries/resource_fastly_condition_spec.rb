@@ -17,24 +17,24 @@
 #
 
 require 'spec_helper'
-require 'libraries/resource_fastly_backend'
+require 'libraries/resource_fastly_condition'
 
-describe Chef::Resource::FastlyBackend do
+describe Chef::Resource::FastlyCondition do
 
   before(:each) do
-    @resource = Chef::Resource::FastlyBackend.new('backend.domain.name')
+    @resource = Chef::Resource::FastlyCondition.new('an_condition')
   end
 
   it "should have the name set" do
-    expect(@resource.name).to eq('backend.domain.name')
+    expect(@resource.name).to eq('an_condition')
   end
 
   it "should let you set the name string" do
-    expect(@resource.name('new-backend.domain.name')).to eq('new-backend.domain.name')
+    expect(@resource.name('an_new_condition')).to eq('an_new_condition')
   end
 
-  it "should set the resource_name to :fastly_backend" do
-    expect(@resource.resource_name).to eq(:fastly_backend)
+  it "should set the resource_name to :fastly_condition" do
+    expect(@resource.resource_name).to eq(:fastly_condition)
   end
 
   it "should allow the username to be set" do
@@ -53,36 +53,28 @@ describe Chef::Resource::FastlyBackend do
     expect(@resource.service('service')).to eq('service')
   end
 
-  it "should have port set to 80 by default" do
-    expect(@resource.port).to eq(80)
+  it "should allow the statement to be set" do
+    expect(@resource.statement('statement')).to eq('statement')
   end
 
-  it "should be able to set to a different port" do
-    expect(@resource.port(443)).to eq(443)
+  it "should allow the priority to be set" do
+    expect(@resource.priority(20)).to eq(20)
   end
 
-  it "should have ssl set to false to by default" do
-    expect(@resource.ssl).to eq(false)
+  it "should allow the type to be set to response" do
+    expect(@resource.type('response')).to eq('response')
   end
 
-  it "should be able to set ssl to true" do
-    expect(@resource.ssl(true)).to eq(true)
+  it "should allow the type to be set to cache" do
+    expect(@resource.type('cache')).to eq('cache')
   end
 
-  it "should set address to name if no address is specified" do
-    expect(@resource.address).to eq('backend.domain.name')
+  it "should allow the type to be set to request" do
+    expect(@resource.type('request')).to eq('request')
   end
 
-  it "should set address if it is specified" do
-    expect(@resource.address('backend-other.domain.name')).to eq('backend-other.domain.name')
-  end
-
-  it "should set request condition if it is specified" do
-    expect(@resource.request_condition('an_condition')).to eq('an_condition')
-  end
-
-  it "should default to not seting up auto load balancing" do
-    expect(@resource.auto_loadbalance).to eq(false)
+  it "should throw an exception if type is not valid" do
+    expect {@resource.type('not_valid')}.to raise_error
   end
 
 end

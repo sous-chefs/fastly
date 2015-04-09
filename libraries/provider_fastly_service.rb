@@ -40,6 +40,7 @@ class Chef
       end
 
       action :activate_latest do
+        Chef::Log.info "#{ @new_resource } activated."
         service.version.activate!
         new_resource.updated_by_last_action(true)
       end

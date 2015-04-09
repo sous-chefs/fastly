@@ -20,21 +20,19 @@ require 'chef/resource/lwrp_base'
 
 class Chef
   class Resource
-    class FastlyBackend < Chef::Resource::LWRPBase
+    class FastlyCondition < Chef::Resource::LWRPBase
 
-      self.resource_name = :fastly_backend
+      self.resource_name = :fastly_condition
       actions :create
       default_action :create
 
       attribute :username, kind_of: String, default: nil
       attribute :password, kind_of: String, default: nil
       attribute :api_key, kind_of: String, default: nil
-      attribute :request_condition, kind_of: String, default: ""
       attribute :service, kind_of: String, default: nil, required: true
-      attribute :port, kind_of: Integer, default: 80
-      attribute :ssl, kind_of: [TrueClass, FalseClass], default: false
-      attribute :address, kind_of: String, name_attribute: true, required: true
-      attribute :auto_loadbalance, kind_of: [TrueClass, FalseClass], default: false
+      attribute :type, kind_of: String, default: 'request', required: true, equal_to: ['request', 'cache', 'response']
+      attribute :statement, kind_of: String, required: true
+      attribute :priority, kind_of: Integer, default: 10
 
     end
   end
