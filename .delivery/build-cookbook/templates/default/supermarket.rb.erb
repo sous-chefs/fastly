@@ -1,6 +1,6 @@
 log_level                :info
 log_location             STDOUT
 node_name                "<%= @username %>"
-client_key               "<%= @key_path %>"
+client_key               "<%= @client_key %>"
 cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )

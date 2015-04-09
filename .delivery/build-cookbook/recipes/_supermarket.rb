@@ -9,20 +9,15 @@ template supermarket_rb do
   source 'supermarket.rb.erb'
   variables(
     username: supermarket['username'],
-    key_path: supermarket_pem
-  )
-end
-
-template supermarket_rb do
-  source 'supermarket.rb.erb'
-  variables(
-    username: supermarket['username']
+    client_key: supermarket_pem
   )
 end
 
 file supermarket_pem do
   content supermarket['pem']
   sensitive true
+  cwd node['delivery_builder']['repo']
+  user node['delivery_builder']['build_user']
 end
 
 # this requires that recipe[delivery-truck::publish] to have already run
