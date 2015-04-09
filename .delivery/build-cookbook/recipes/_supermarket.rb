@@ -16,8 +16,6 @@ end
 file supermarket_pem do
   content supermarket['pem']
   sensitive true
-  cwd node['delivery_builder']['repo']
-  user node['delivery_builder']['build_user']
 end
 
 # this requires that recipe[delivery-truck::publish] to have already run
