@@ -29,5 +29,5 @@ cookbook_directory = File.join(node['delivery']['workspace']['cache'], "cookbook
 execute "upload_cookbook_#{node['delivery']['change']['project']}" do
   command "knife cookbook site share #{node['delivery']['change']['project']} other " \
     "--config #{supermarket_rb} " \
-    "--cookbook-path #{cookbook_directory}"
+    "--cookbook-path #{node['delivery']['workspace']['root']}"
 end
