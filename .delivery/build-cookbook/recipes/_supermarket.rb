@@ -21,4 +21,13 @@ end
 
 file supermarket_pem do
   content supermarket['pem']
+  sensetive true
+end
+
+# this requires that recipe[delivery-truck::publish] to have already run
+cookbook_directory = File.join(node['delivery']['workspace']['cache'], "cookbook-upload")
+execute "upload_cookbook_#{cookbook[:name]}" do
+  command "knife cookbook site share #{node['delivery']['change']['project']} other" \
+    "--config #{supermarket_rb} " \
+    "--cookbook-path #{cookbook_directory}"
 end
