@@ -9,6 +9,7 @@ include_recipe 'chef_handler::default'
 include_recipe 'hipchat::default'
 
 load_data_bag_item('creds', 'hipchat')
+load_data_bag_item('creds', 'supermarket')
 
 cookbook_file "hipchat.rb" do
   path File.join(node["chef_handler"]["handler_path"], 'hipchat.rb')
