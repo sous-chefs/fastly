@@ -8,7 +8,8 @@ supermarket = encrypted_data_bag_item_for_environment('creds', 'supermarket')
 template supermarket_rb do
   source 'supermarket.rb.erb'
   variables(
-    username: supermarket['username']
+    username: supermarket['username'],
+    key_path: supermarket_pem
   )
 end
 
