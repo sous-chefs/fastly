@@ -41,10 +41,12 @@ class Chef
 
       action :activate_latest do
         service.version.activate!
+        new_resource.updated_by_last_action(true)
       end
 
       action :purge_all do
         service.purge_all
+        new_resource.updated_by_last_action(true)
       end
 
       def get_auth_hash
