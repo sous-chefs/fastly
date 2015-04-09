@@ -1,7 +1,7 @@
 include_recipe 'chef-sugar::default'
 
-supermarket_rb = File.join('/var/opt/delivery/workspace/.chef', 'supermarket.rb')
-supermarket_pem = File.join('/var/opt/delivery/workspace/.chef', 'supermarket.pem')
+supermarket_rb = File.join(node['delivery']['workspace']['cache'], 'supermarket.rb')
+supermarket_pem = File.join(node['delivery']['workspace']['cache'], 'supermarket.pem')
 
 supermarket = encrypted_data_bag_item_for_environment('creds', 'supermarket')
 
