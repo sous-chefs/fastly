@@ -21,7 +21,7 @@ end
 
 file supermarket_pem do
   content supermarket['pem']
-  sensetive true
+  sensitive true
 end
 
 # this requires that recipe[delivery-truck::publish] to have already run
