@@ -20,7 +20,7 @@ require 'chef/provider/lwrp_base'
 
 class Chef
   class Provider
-    class FastlyBackend < Chef::Provider::LWRPBase
+    class FastlyCondition < Chef::Provider::LWRPBase
 
       use_inline_resources if defined?(use_inline_resources)
 
@@ -29,10 +29,10 @@ class Chef
       end
 
       action :create do
-        if backend
+        if condition
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."
         else
-          create_backend
+          create_condition
           Chef::Log.info "#{ @new_resource } created."
           new_resource.updated_by_last_action(true)
         end
@@ -41,39 +41,24 @@ class Chef
 
       action :update do
 
-        unless backend.address == new_resource.address
-          backend.address = new_resource.address
-          backend.save!
-          Chef::Log.info "#{ @new_resource } address updated."
+        unless condition.statement == new_resource.statement
+          condition.statement = new_resource.statement
+          condition.save!
+          Chef::Log.info "#{ @new_resource } statement updated."
           new_resource.updated_by_last_action(true)
         end
 
-        unless backend.request_condition == new_resource.request_condition
-          backend.request_condition = new_resource.request_condition
-          backend.save!
-          Chef::Log.info "#{ @new_resource } request_condition updated."
+        unless condition.priority.to_i == new_resource.priority
+          condition.priority = new_resource.priority
+          condition.save!
+          Chef::Log.info "#{ @new_resource } priority updated."
           new_resource.updated_by_last_action(true)
         end
 
-        unless backend.port == new_resource.port
-          backend.port = new_resource.port
-          backend.save!
-          Chef::Log.info "#{ @new_resource } port updated."
-          new_resource.updated_by_last_action(true)
-        end
-
-        unless backend.use_ssl == new_resource.ssl
-          backend.use_ssl = new_resource.ssl
-          backend.save!
-          Chef::Log.info "#{ @new_resource } ssl updated."
-          new_resource.updated_by_last_action(true)
-        end
-
-        unless backend.auto_loadbalance == new_resource.auto_loadbalance
-          backend.auto_loadbalance = new_resource.auto_loadbalance
-          fastly_client.update_backend(backend)
-          backend.save!
-          Chef::Log.info "#{ @new_resource } auto_loadbalance updated."
+        unless condition.type == new_resource.type.upcase
+          condition.type = new_resource.type.upcase
+          condition.save!
+          Chef::Log.info "#{ @new_resource } type updated."
           new_resource.updated_by_last_action(true)
         end
 
@@ -108,23 +93,24 @@ class Chef
         end
       end
 
-      def backend
-        unless @backend
-          @backend = fastly_client.list_backends(
+      def condition
+        unless @condition
+          @condition = fastly_client.list_conditions(
             service_id: service.id,
             version: service.version.number
           ).select { |b| b.name == new_resource.name }
-          @backend = @backend.first
+          @condition = @condition.first
         end
-        @backend
+        @condition
       end
 
-      def create_backend
-        fastly_client.create_backend(
+      def create_condition
+        fastly_client.create_condition(
           service_id: service.id,
           version: service.version.number,
           name: new_resource.name,
-          address: new_resource.address
+          type: new_resource.type.upcase,
+          statement: new_resource.statement
         )
       end
 

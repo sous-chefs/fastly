@@ -17,20 +17,20 @@
 #
 
 require 'spec_helper'
-require 'libraries/provider_fastly_backend'
-require 'libraries/resource_fastly_backend'
+require 'libraries/provider_fastly_condition'
+require 'libraries/resource_fastly_condition'
 
-describe Chef::Provider::FastlyBackend do
+describe Chef::Provider::FastlyCondition do
   before(:each) do
     @node = Chef::Node.new
     @events = Chef::EventDispatch::Dispatcher.new
     @run_context = Chef::RunContext.new(@node, {}, @events)
 
-    @new_resource = Chef::Resource::FastlyBackend.new('backend.domain.name')
+    @new_resource = Chef::Resource::FastlyCondition.new('an_condition')
 
-    @current_resource = Chef::Resource::FastlyBackend.new('backend.domain.name')
+    @current_resource = Chef::Resource::FastlyCondition.new('an_condition')
 
-    @provider = Chef::Provider::FastlyBackend.new(@new_resource, @run_context)
+    @provider = Chef::Provider::FastlyCondition.new(@new_resource, @run_context)
     @provider.current_resource = @current_resource
   end
 
@@ -85,7 +85,7 @@ describe Chef::Provider::FastlyBackend do
     end
   end
 
-  describe '#backend' do
+  describe '#condition' do
     before(:each) do
       @new_resource.api_key('an_api_key')
       @new_resource.service('service_name')
@@ -99,28 +99,28 @@ describe Chef::Provider::FastlyBackend do
           ),
           double(Fastly::Service, name: 'another_service', id: 'cba4321'),
       ])
-      allow(@provider.fastly_client).to receive(:list_backends) \
+      allow(@provider.fastly_client).to receive(:list_conditions) \
         .and_return([
-          double(Fastly::Backend, name: 'backend.domain.name', address: 'backend.domain.name'),
-          double(Fastly::Backend, name: 'backend.domain.name_http', address: 'backend.domain.name'),
-          double(Fastly::Backend, name: 'example-2.name', address: 'example-2.name')
+          double(Fastly::Condition, name: 'an_condition'),
+          double(Fastly::Condition, name: 'condition2'),
       ])
     end
 
-    it 'returns backend object if backend name matches' do
-      expect(@provider.backend.address).to eq('backend.domain.name')
+    it 'returns condition object if condition name matches' do
+      expect(@provider.condition.name).to eq('an_condition')
     end
 
-    it 'returns nil if backend is not found' do
-      @new_resource.name('not-found.name')
-      expect(@provider.backend).to eq(nil)
+    it 'returns nil if condition is not found' do
+      @new_resource.name('not-found')
+      expect(@provider.condition).to eq(nil)
     end
   end
 
-  describe '#create_backend' do
+  describe '#create_condition' do
     before(:each) do
       @new_resource.api_key('an_api_key')
       @new_resource.service('service_name')
+      @new_resource.statement('statement')
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
@@ -132,12 +132,12 @@ describe Chef::Provider::FastlyBackend do
           double(Fastly::Service, name: 'another_service', id: 'cba4321'),
       ])
 
-      allow(@provider.fastly_client).to receive(:create_backend) \
-        .and_return(double(Fastly::Backend, name: 'backend.domain.name', address: 'backend.domain.name'))
+      allow(@provider.fastly_client).to receive(:create_condition) \
+        .and_return(double(Fastly::Backend, name: 'an_condition'))
     end
 
-    it 'should return a backend object when created' do
-      expect(@provider.create_backend.name).to eq('backend.domain.name')
+    it 'should return a condition object when created' do
+      expect(@provider.create_condition.name).to eq('an_condition')
     end
   end
 end
