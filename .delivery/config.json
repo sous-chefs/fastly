@@ -11,5 +11,10 @@
     "deploy",
     "quality",
     "functional"
-  ]
+  ],
+  "delivery-truck": {
+    "publish": {
+      "github": "chef-cookbooks/fastly"
+    }
+  }
 }
