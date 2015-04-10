@@ -1,3 +1,7 @@
+v0.0.7 (2015-04-10)
+===================
+- Publish to GitHub
+
 v0.0.6 (2015-04-08)
 ==================
 - Adds fastly_condition resource
