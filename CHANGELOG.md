@@ -1,3 +1,7 @@
+v0.0.8 (2015-04-21)
+===================
+- Adds fastly_request_setting resource
+
 v0.0.7 (2015-04-10)
 ===================
 - Publish to GitHub
