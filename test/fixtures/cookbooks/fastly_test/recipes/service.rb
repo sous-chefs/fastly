@@ -40,3 +40,11 @@ fastly_request_setting 'force_ssl' do
   notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
 end
 
+fastly_cache_setting 'ttl_goodness' do
+  api_key node['fastly']['api_key']
+  service cwebber_test.name
+  ttl 60
+  stale_ttl 120
+  notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
+end
+
