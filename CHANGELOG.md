@@ -1,3 +1,7 @@
+v0.0.9 (2015-04-21)
+===================
+- Adds fastly_cache_setting resource
+
 v0.0.8 (2015-04-21)
 ===================
 - Adds fastly_request_setting resource
