@@ -32,3 +32,11 @@ fastly_backend 'www.chef.io_http' do
   request_condition not_www_lb.name
   notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
 end
+
+fastly_request_setting 'force_ssl' do
+  api_key node['fastly']['api_key']
+  service cwebber_test.name
+  force_ssl true
+  notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
+end
+
