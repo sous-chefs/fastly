@@ -111,7 +111,7 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
-        unless header.priority == new_resource.priority
+        unless header.priority.to_i == new_resource.priority
           header.priority = new_resource.priority
           header.save!
           Chef::Log.info "#{ @new_resource } priority updated."
@@ -153,7 +153,7 @@ class Chef
         unless @header
           @header = fastly_client.list_headers(
             service_id: service.id,
-            version: service.version.number
+            version: service.version.number,
           ).select { |b| b.name == new_resource.name }
           @header = @header.first
         end
@@ -165,6 +165,8 @@ class Chef
           service_id: service.id,
           version: service.version.number,
           name: new_resource.name,
+          type: new_resource.type,
+          dst: new_resource.dst
         )
       end
 

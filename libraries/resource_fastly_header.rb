@@ -40,7 +40,7 @@ class Chef
         'regex',
         'regex_repeat'
       ]
-      attribute :ignore_if_set, kind_of: [TrueClass, FalseClass], default: nil
+      attribute :ignore_if_set, kind_of: [TrueClass, FalseClass], default: false
       attribute :type, kind_of: String, default: nil, required: true, equal_to: [
         'request',
         'cache',
@@ -50,7 +50,7 @@ class Chef
       attribute :dst, kind_of: String, default: nil, required: true
       attribute :src, kind_of: String, default: nil
       attribute :regexp, kind_of: String, default: nil
-      attribute :substitution, kind_of: String, default: nil
+      attribute :substitution, kind_of: String, default: ""
       attribute :priority, kind_of: Integer, default: nil
 
     end

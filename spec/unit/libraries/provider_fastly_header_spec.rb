@@ -27,6 +27,8 @@ describe Chef::Provider::FastlyHeader do
     @run_context = Chef::RunContext.new(@node, {}, @events)
 
     @new_resource = Chef::Resource::FastlyHeader.new('an_header')
+    @new_resource.type 'response'
+    @new_resource.dst 'http.location'
 
     @current_resource = Chef::Resource::FastlyHeader.new('an_header')
 
@@ -95,7 +97,7 @@ describe Chef::Provider::FastlyHeader do
           double(Fastly::Service, 
            name: 'service_name',
            id: '1234abc',
-           version: double(Fastly::Version, number: 10)
+           version: double(Fastly::Version, number: 10),
           ),
           double(Fastly::Service, name: 'another_service', id: 'cba4321'),
       ])
@@ -127,7 +129,7 @@ describe Chef::Provider::FastlyHeader do
           double(Fastly::Service, 
            name: 'service_name',
            id: '1234abc',
-           version: double(Fastly::Version, number: 10)
+           version: double(Fastly::Version, number: 10),
           ),
           double(Fastly::Service, name: 'another_service', id: 'cba4321'),
       ])
