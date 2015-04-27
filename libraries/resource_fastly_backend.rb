@@ -17,18 +17,16 @@
 #
 
 require 'chef/resource/lwrp_base'
+require_relative 'resource_fastly_base'
 
 class Chef
   class Resource
-    class FastlyBackend < Chef::Resource::LWRPBase
+    class FastlyBackend < Chef::Resource::FastlyBase
 
       self.resource_name = :fastly_backend
       actions :create
       default_action :create
 
-      attribute :username, kind_of: String, default: nil
-      attribute :password, kind_of: String, default: nil
-      attribute :api_key, kind_of: String, default: nil
       attribute :request_condition, kind_of: String, default: ""
       attribute :service, kind_of: String, default: nil, required: true
       attribute :port, kind_of: Integer, default: 80

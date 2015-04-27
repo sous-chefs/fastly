@@ -17,16 +17,11 @@
 #
 
 require 'chef/provider/lwrp_base'
+require_relative 'provider_fastly_base'
 
 class Chef
   class Provider
-    class FastlyService < Chef::Provider::LWRPBase
-
-      use_inline_resources if defined?(use_inline_resources)
-
-      def whyrun_supported?
-        false
-      end
+    class FastlyService < Chef::Provider::FastlyBase
 
       action :create do
         if service 
@@ -48,26 +43,6 @@ class Chef
       action :purge_all do
         service.purge_all
         new_resource.updated_by_last_action(true)
-      end
-
-      def get_auth_hash
-        if new_resource.username && new_resource.password
-          return {username: new_resource.username, password: new_resource.password}
-        end
-
-        if new_resource.api_key
-          return {api_key: new_resource.api_key}
-        end
-
-        fail "A username and password or api key must be set"
-      end
-
-      def fastly_client
-        unless @fastly_client
-          require 'fastly'
-          @fastly_client = Fastly.new(get_auth_hash)
-        end
-        @fastly_client
       end
 
       def service

@@ -1,3 +1,7 @@
+v0.0.11 (2015-04-27)
+====================
+- Refactors to use a base resource and provider to DRY up code
+
 v0.0.10 (2015-04-27)
 ====================
 - Adds fastly_header

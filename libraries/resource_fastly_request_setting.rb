@@ -17,19 +17,16 @@
 #
 
 require 'chef/resource/lwrp_base'
+require_relative 'resource_fastly_base'
 
 class Chef
   class Resource
-    class FastlyRequestSetting < Chef::Resource::LWRPBase
+    class FastlyRequestSetting < Chef::Resource::FastlyBase
 
       self.resource_name = :fastly_request_setting
       actions :create
       default_action :create
 
-      attribute :username, kind_of: String, default: nil
-      attribute :password, kind_of: String, default: nil
-      attribute :api_key, kind_of: String, default: nil
-      attribute :service, kind_of: String, default: nil, required: true
       attribute :request_condition, kind_of: String, default: ""
       attribute :force_ssl, kind_of: [TrueClass, FalseClass], default: nil
       attribute :force_miss, kind_of: [TrueClass, FalseClass], default: nil
