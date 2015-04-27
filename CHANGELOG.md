@@ -1,3 +1,7 @@
+v0.0.10 (2015-04-27)
+====================
+- Adds fastly_header
+
 v0.0.9 (2015-04-21)
 ===================
 - Adds fastly_cache_setting resource
