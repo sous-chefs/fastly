@@ -17,16 +17,11 @@
 #
 
 require 'chef/provider/lwrp_base'
+require_relative 'provider_fastly_base'
 
 class Chef
   class Provider
-    class FastlyHeader < Chef::Provider::LWRPBase
-
-      use_inline_resources if defined?(use_inline_resources)
-
-      def whyrun_supported?
-        false
-      end
+    class FastlyHeader < Chef::Provider::FastlyBase
 
       action :create do
         if header
@@ -120,35 +115,6 @@ class Chef
 
       end
 
-      def get_auth_hash
-        if new_resource.username && new_resource.password
-          return {username: new_resource.username, password: new_resource.password}
-        end
-
-        if new_resource.api_key
-          return {api_key: new_resource.api_key}
-        end
-
-        fail "A username and password or api key must be set"
-      end
-
-      def fastly_client
-        unless @fastly_client
-          require 'fastly'
-          @fastly_client = Fastly.new(get_auth_hash)
-        end
-        @fastly_client
-      end
-
-      def service
-        @service = fastly_client.list_services.select { |svc| svc.name == new_resource.service }
-        if @service.first
-          @service.first
-        else
-          fail "The service does not exist"
-        end
-      end
-
       def header
         unless @header
           @header = fastly_client.list_headers(
@@ -169,19 +135,6 @@ class Chef
           dst: new_resource.dst
         )
       end
-
-      def fastly_bool(bool)
-        if bool == nil
-          nil
-        end
-
-        if bool
-          "1"
-        else
-          "0"
-        end
-      end
-
     end
   end
 end
