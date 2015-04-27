@@ -48,3 +48,27 @@ fastly_cache_setting 'ttl_goodness' do
   notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
 end
 
+subdomain = fastly_condition 'subdomain' do
+  api_key node['fastly']['api_key']
+  service cwebber_test.name
+  type 'request'
+  statement 'req.http.host ~ "^subdomain"'
+  notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
+end
+
+fastly_header 'redirect_subdomain' do
+  api_key node['fastly']['api_key']
+  service cwebber_test.name
+  type 'response'
+  header_action 'set'
+  dst 'http.location'
+  src '"https://www.chef.io/subdomain" req.url'
+  priority 10
+  request_condition subdomain.name
+  notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
+end
+
+
+  
+
+
