@@ -68,7 +68,28 @@ fastly_header 'redirect_subdomain' do
   notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
 end
 
-
-  
-
-
+fastly_gzip 'standard_gzip' do
+  api_key node['fastly']['api_key']
+  service cwebber_test.name
+  extensions 'css js html eot ico otf ttf json'
+  content_types [
+    'text/html',
+    'application/x-javascript',
+    'text/css',
+    'application/javascript',
+    'text/javascript',
+    'application/json',
+    'application/vnd.ms-fontobject',
+    'application/x-font-opentype',
+    'application/x-font-truetype',
+    'application/x-font-ttf',
+    'application/xml',
+    'font/eot',
+    'font/opentype',
+    'font/otf',
+    'image/svg+xml',
+    'image/vnd.microsoft.icon',
+    'text/plain',
+    'text/xml'
+  ].join(" ")
+end
