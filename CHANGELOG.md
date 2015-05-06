@@ -1,3 +1,7 @@
+v0.0.13 (2015-05-05)
+====================
+- Adds a fastly_response resource
+
 v0.0.12 (2015-04-27)
 ====================
 - Adds fastly_gzip resource
