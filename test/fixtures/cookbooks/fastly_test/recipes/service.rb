@@ -93,3 +93,11 @@ fastly_gzip 'standard_gzip' do
     'text/xml'
   ].join(" ")
 end
+
+fastly_response 'subdomain_redirect' do
+  api_key node['fastly']['api_key']
+  service cwebber_test.name
+  request_condition subdomain.name
+  status 302
+  notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
+end
