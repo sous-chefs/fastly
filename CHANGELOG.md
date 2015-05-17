@@ -1,3 +1,7 @@
+v0.0.14 (2015-05-17)
+====================
+- Adds fastly_s3_logging resource
+
 v0.0.13 (2015-05-05)
 ====================
 - Adds a fastly_response resource
