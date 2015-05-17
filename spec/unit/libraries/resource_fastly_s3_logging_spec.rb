@@ -37,8 +37,8 @@ describe Chef::Resource::FastlyS3Logging do
     expect(@resource.resource_name).to eq(:fastly_s3_logging)
   end
 
-  it "should allow bucket to be set" do
-    expect(@resource.bucket('an_bucket')).to eq('an_bucket')
+  it "should allow bucket_name to be set" do
+    expect(@resource.bucket_name('an_bucket')).to eq('an_bucket')
   end
 
   it "should allow access_key to be set" do

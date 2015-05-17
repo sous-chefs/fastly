@@ -17,6 +17,7 @@
 #
 
 require 'chef/resource/lwrp_base'
+require_relative 'resource_fastly_base'
 
 class Chef
   class Resource
@@ -27,11 +28,11 @@ class Chef
       default_action :create
 
       attribute :response_condition, kind_of: String, default: ""
-      attribute :bucket, kind_of: String, default: nil
+      attribute :bucket_name, kind_of: String, default: nil
       attribute :access_key, kind_of: String, default: nil
       attribute :secret_key, kind_of: String, default: nil
       attribute :path, kind_of: String, default: nil
-      attribute :format, kind_of: String, default: nil
+      attribute :format, kind_of: String, default: "%h %l %u %t %r %>s"
       attribute :period, kind_of: Integer, default: 3600
       attribute :gzip_level, kind_of: Integer, default: 3
     end

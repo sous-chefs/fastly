@@ -101,3 +101,14 @@ fastly_response 'subdomain_redirect' do
   status 302
   notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
 end
+
+fastly_s3_logging 's3_logging' do
+  api_key node['fastly']['api_key']
+  service cwebber_test.name
+  gzip_level 9
+  access_key node['fastly']['aws_access_key']
+  secret_key node['fastly']['aws_secret_key']
+  bucket_name 'cwebber_test_logs'
+  notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
+end
+
