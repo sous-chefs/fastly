@@ -24,7 +24,7 @@ class Chef
     class FastlyService < Chef::Provider::FastlyBase
 
       action :create do
-        if service 
+        if service
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."
         else
           create_service
@@ -37,6 +37,7 @@ class Chef
       action :activate_latest do
         Chef::Log.info "#{ @new_resource } activated."
         service.version.activate!
+        service.version.clone
         new_resource.updated_by_last_action(true)
       end
 
