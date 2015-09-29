@@ -1,3 +1,7 @@
+v0.0.15 (2015-09-26)
+====================
+- Forces a new version to be cloned after activate
+
 v0.0.14 (2015-05-17)
 ====================
 - Adds fastly_s3_logging resource
