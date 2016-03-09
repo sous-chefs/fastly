@@ -1,3 +1,7 @@
+v0.0.16 (2016-03-09)
+====================
+- Updates method call to be compatible with latest gem
+
 v0.0.15 (2015-09-26)
 ====================
 - Forces a new version to be cloned after activate

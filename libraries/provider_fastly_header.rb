@@ -92,8 +92,8 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
-        unless header.regexp == new_resource.regexp
-          header.regexp = new_resource.regexp
+        unless header.regex == new_resource.regexp
+          header.regex = new_resource.regexp
           header.save!
           Chef::Log.info "#{ @new_resource } regexp updated."
           new_resource.updated_by_last_action(true)
