@@ -6,4 +6,5 @@
 
 chef_gem 'fastly' do
   action :install
+  version '1.2.2'
 end.run_action(:install)

@@ -1,3 +1,7 @@
+v0.0.17 (2016-03-09)
+====================
+- Pins the gem version
+
 v0.0.16 (2016-03-09)
 ====================
 - Updates method call to be compatible with latest gem
