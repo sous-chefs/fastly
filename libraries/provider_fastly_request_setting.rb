@@ -117,6 +117,7 @@ class Chef
           service_id: service.id,
           version: service.version.number,
           name: new_resource.name,
+          max_stale_age: 60
         )
       end
     end

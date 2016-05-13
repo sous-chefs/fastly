@@ -1,3 +1,8 @@
+v0.0.18 (2016-05-13)
+====================
+- Updates the gem version
+- Sets the max stale age on request setting to the default on creation
+
 v0.0.17 (2016-03-09)
 ====================
 - Pins the gem version
