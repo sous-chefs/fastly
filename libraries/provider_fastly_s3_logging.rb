@@ -92,6 +92,20 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
+        unless s3_logging.domain == new_resource.domain
+          s3_logging.domain = new_resource.domain
+          s3_logging.save!
+          Chef::Log.info "#{ @new_resource } domain updated."
+          new_resource.updated_by_last_action(true)
+        end
+
+        unless s3_logging.redundancy == new_resource.redundancy
+          s3_logging.redundancy = new_resource.redundancy
+          s3_logging.save!
+          Chef::Log.info "#{ @new_resource } redundancy level updated."
+          new_resource.updated_by_last_action(true)
+        end
+
       end
 
       def s3_logging
