@@ -28,13 +28,15 @@ class Chef
       default_action :create
 
       attribute :response_condition, kind_of: String, default: ""
-      attribute :bucket_name, kind_of: String, default: nil
-      attribute :access_key, kind_of: String, default: nil
-      attribute :secret_key, kind_of: String, default: nil
+      attribute :bucket_name, kind_of: String, required: true
+      attribute :access_key, kind_of: String, required: true
+      attribute :secret_key, kind_of: String, required: true
       attribute :path, kind_of: String, default: nil
       attribute :format, kind_of: String, default: "%h %l %u %t %r %>s"
       attribute :period, kind_of: Integer, default: 3600
       attribute :gzip_level, kind_of: Integer, default: 3
+      attribute :domain, kind_of: String, default: "s3.amazonaws.com"
+      attribute :redundancy, kind_of: String, default: "Standard"
     end
   end
 end
