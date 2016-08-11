@@ -99,6 +99,12 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
+        unless request_setting.default_ttl == new_resource.default_ttl
+          request_setting.default_ttl = new_resource.default_ttl
+          request_setting.save!
+          Chef::Log.info "#{ @new_resource } default_ttl updated."
+          new_resource.updated_by_last_action(true)
+        end
       end
 
       def request_setting

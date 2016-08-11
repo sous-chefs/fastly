@@ -32,6 +32,7 @@ class Chef
       attribute :force_miss, kind_of: [TrueClass, FalseClass], default: nil
       attribute :bypass_busy_wait, kind_of: [TrueClass, FalseClass], default: nil
       attribute :default_host, kind_of: String, default: nil
+      attribute :default_ttl, kind_of: Integer, default 3600
       attribute :hash_keys, kind_of: String, default: nil
       attribute :max_stale_age, kind_of: Integer, default: nil
       attribute :request_action, kind_of: String, default: nil, equal_to: ['pass', 'lookup']
