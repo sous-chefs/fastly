@@ -72,6 +72,13 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
+        unless backend.shield == new_resource.shield
+          backend.shield = new_resource.shield
+          fastly_client.update_backend(backend)
+          backend.save!
+          Chef::Log.info "#{ @new_resource } shield updated."
+          new_resource.updated_by_last_action(true)
+        end
       end
 
       def backend
