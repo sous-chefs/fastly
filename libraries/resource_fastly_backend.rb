@@ -33,6 +33,39 @@ class Chef
       attribute :ssl, kind_of: [TrueClass, FalseClass], default: false
       attribute :address, kind_of: String, name_attribute: true, required: true
       attribute :auto_loadbalance, kind_of: [TrueClass, FalseClass], default: false
+      attribute :shield, kind_of: String, equal_to: DATACENTERS
+
+      DATACENTERS = [
+        "Amsterdam",
+        "Ashburn",
+        "Atlanta",
+        "Auckland",
+        "Brisbane",
+        "Boston",
+        "Chicago",
+        "Dallas",
+        "Denver",
+        "Fujairah Al Mahta",
+        "Frankfurt",
+        "Hong Kong",
+        "London - LCY",
+        "London - LHR",
+        "Los Angeles",
+        "Toronto",
+        "Melbourne",
+        "Miami",
+        "New York City",
+        "Osaka",
+        "Perth",
+        "San Jose",
+        "Seattle",
+        "Singapore",
+        "Stockholm",
+        "Sydney",
+        "Tokyo",
+        "Wellington",
+        "Sao Paulo",
+      ].freeze
 
     end
   end
