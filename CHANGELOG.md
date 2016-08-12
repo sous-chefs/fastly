@@ -1,3 +1,7 @@
+v0.1.2 (2015-08-12)
+-------------------
+- Add Fastly Shield support.
+
 v0.1.0 (2016-05-27)
 -------------------
 - Take advantage of installing the gem via the metadata
