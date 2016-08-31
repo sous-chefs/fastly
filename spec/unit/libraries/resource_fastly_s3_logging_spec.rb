@@ -65,6 +65,10 @@ describe Chef::Resource::FastlyS3Logging do
     expect(@resource.format('an_format')).to eq('an_format')
   end
 
+  it "should allow format_version to be set" do
+    expect(@resource.format_version(2)).to eq(2)
+  end
+
   it "should set response condition if it is specified" do
     expect(@resource.response_condition('an_condition')).to eq('an_condition')
   end
