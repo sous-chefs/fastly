@@ -34,6 +34,7 @@ class Chef
       attribute :address, kind_of: String, name_attribute: true, required: true
       attribute :auto_loadbalance, kind_of: [TrueClass, FalseClass], default: false
       attribute :shield, kind_of: String
+      attribute :healthcheck, kind_of: String
 
     end
   end

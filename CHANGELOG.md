@@ -1,4 +1,12 @@
-v0.1.2 (2015-08-12)
+v0.1.4 (2016-09-06)
+-------------------
+- Add `fastly_healthcheck` resource
+
+v0.1.3 (2016-08-31)
+-------------------
+- Add `format_version` support to `fastly_s3_logging` resource
+
+v0.1.2 (2016-08-12)
 -------------------
 - Add Fastly Shield support.
 

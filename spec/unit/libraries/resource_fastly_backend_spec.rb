@@ -85,4 +85,8 @@ describe Chef::Resource::FastlyBackend do
     expect(@resource.auto_loadbalance).to eq(false)
   end
 
+  it "should set healthcheck if it is specified" do
+    expect(@resource.request_condition('an_healthcheck')).to eq('an_healthcheck')
+  end
+
 end
