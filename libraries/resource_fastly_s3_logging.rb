@@ -33,6 +33,7 @@ class Chef
       attribute :secret_key, kind_of: String, required: true
       attribute :path, kind_of: String, default: nil
       attribute :format, kind_of: String, default: "%h %l %u %t %r %>s"
+      attribute :format_version, kind_of: Integer, default: 1
       attribute :period, kind_of: Integer, default: 3600
       attribute :gzip_level, kind_of: Integer, default: 3
       attribute :domain, kind_of: String, default: "s3.amazonaws.com"
