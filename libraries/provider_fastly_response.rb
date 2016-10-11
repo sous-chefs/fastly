@@ -71,6 +71,13 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
+        unless response.response == new_resource.response
+          response.response = new_resource.response
+          response.save!
+          Chef::Log.info "#{ @new_resource } response updated."
+          new_resource.updated_by_last_action(true)
+        end
+
       end
 
       def response

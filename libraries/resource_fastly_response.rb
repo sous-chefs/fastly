@@ -32,6 +32,7 @@ class Chef
       attribute :status, kind_of: Integer, default: 200
       attribute :content, kind_of: String, default: nil
       attribute :content_type, kind_of: String, default: nil
+      attribute :response, kind_of: String, default: nil
 
     end
   end
