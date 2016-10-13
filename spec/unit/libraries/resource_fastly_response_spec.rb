@@ -49,4 +49,8 @@ describe Chef::Resource::FastlyResponse do
     expect(@resource.content_type('text/plain')).to eq('text/plain')
   end
 
+  it "should allow the response to be set" do
+    expect(@resource.response('OK')).to eq('OK')
+  end
+
 end
