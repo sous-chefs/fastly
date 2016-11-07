@@ -45,7 +45,6 @@ describe Chef::Provider::FastlyACL do
           ),
           double(Fastly::Service, name: 'another_service', id: 'cba4321'),
         ])
-
       allow(@provider.fastly_client).to receive(:list_acls) \
         .and_return([
           double(Fastly::ACL, name: 'acl_group'),
@@ -61,31 +60,6 @@ describe Chef::Provider::FastlyACL do
     it 'returns nil if acl is not found' do
       @new_resource.name('not-found')
       expect(@provider.acl).to eq(nil)
-    end
-  end
-
-  describe '#create_acl' do
-    before(:each) do
-      @new_resource.api_key('an_api_key')
-      @new_resource.service('service_name')
-      @new_resource.entries(['0.0.0.0'])
-
-      allow(@provider.fastly_client).to receive(:list_services) \
-        .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
-
-      allow(@provider.fastly_client).to receive(:create_acl) \
-        .and_return(double(Fastly::ACL, name: 'acl_group'))
-    end
-
-    it 'should return a acl object when created' do
-      expect(@provider.create_acl.name).to eq('acl_group')
     end
   end
 end

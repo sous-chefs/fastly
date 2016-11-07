@@ -24,12 +24,12 @@ class Chef
     class FastlyACL < Chef::Provider::FastlyBase
 
       action :create do
-        if acl.nil?
-          create_acl
+        if acl
+          Chef::Log.debug "ACL exists."
+        else
+          fastly_client.create_acl(acl_options)
           Chef::Log.info "#{new_resource} ACL created."
           new_resource.updated_by_last_action(true)
-        else
-          Chef::Log.debug "ACL exists."
         end
 
         entries_to_delete = entries.select { |entry| !new_resource.entries.include?(entry.ip) }
@@ -50,17 +50,20 @@ class Chef
       end
 
       def acl
-        @acl ||= fastly_client.list_acls.find { |acl| acl.name == new_resource.name }
+        @acl ||= fastly_client.list_acls(acl_options).find { |acl| acl.name == new_resource.name }
       end
 
       def entries
         @entries ||= acl.list_entries
       end
 
-      def create_acl
-        fastly_client.create_acl(name: new_resource.name)
+      def acl_options
+        @acl_options ||= {
+          service_id: service.id,
+          version: service.version.number,
+          name: new_resource.name
+        }
       end
-
     end
   end
 end
