@@ -45,22 +45,21 @@ describe Chef::Provider::FastlyACL do
           ),
           double(Fastly::Service, name: 'another_service', id: 'cba4321'),
         ])
+      allow(@provider.fastly_client).to receive(:list_acls) \
+        .and_return([
+          double(Fastly::ACL, name: 'acl_group'),
+          double(Fastly::ACL, name: 'acl_group_2'),
+        ])
     end
 
     it 'returns acl object if acl name matches' do
-      allow(@provider.fastly_client).to receive(:get_acl) \
-        .and_return(double(Fastly::ACL, name: 'acl_group'))
-
       @new_resource.name('acl_group')
       expect(@provider.acl.name).to eq('acl_group')
     end
 
     it 'returns nil if acl is not found' do
-      allow(@provider.fastly_client).to receive(:get_acl) \
-        .and_raise(Fastly::Error, message: 'Record not found')
-
       @new_resource.name('not-found')
-      expect(@provider.acl).to be_nil
+      expect(@provider.acl).to eq(nil)
     end
   end
 end
