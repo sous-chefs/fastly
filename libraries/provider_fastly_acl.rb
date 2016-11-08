@@ -32,19 +32,19 @@ class Chef
           Chef::Log.debug "ACL exists."
         end
 
-        new_resource.entries.each do |entry|
-          if entries.include?(entry)
-            Chef::Log.debug "ACL entry '#{entry}' exists."
+        new_resource.entries.each do |entry_ip|
+          if entry_ips.include?(entry_ip)
+            Chef::Log.debug "ACL entry '#{entry_ip}' exists."
           else
-            acl.create_entry(ip: entry)
-            Chef::Log.info "ACL entry '#{entry}' created."
+            acl.create_entry(ip: entry_ip)
+            Chef::Log.info "ACL entry '#{entry_ip}' created."
           end
         end
 
-        entries.each do |entry|
-          if !new_resource.entries.include?(entry)
-            acl.delete_entry(entry_for(entry.ip))
-            Chef::Log.info "ACL entry '#{entry}' deleted."
+        entry_ips.each do |entry_ip|
+          if !new_resource.entries.include?(entry_ip)
+            acl.delete_entry(entry_for(entry_ip))
+            Chef::Log.info "ACL entry '#{entry_ip}' deleted."
           end
         end
       end
@@ -57,8 +57,8 @@ class Chef
         acl.list_entries.find { |entry| entry.ip == ip_address }
       end
 
-      def entries
-        @entries ||= acl.list_entries.map(&:ip)
+      def entry_ips
+        @entry_ips ||= acl.list_entries.map(&:ip)
       end
 
       def acl_options
