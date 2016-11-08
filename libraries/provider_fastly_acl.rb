@@ -38,21 +38,23 @@ class Chef
           else
             acl.create_entry(ip: entry)
             Chef::Log.info "ACL entry '#{entry}' created."
-            new_resource.updated_by_last_action(true)
           end
         end
 
         entries.each do |entry|
           if !new_resource.entries.include?(entry)
-            acl.delete_entry(entry)
+            acl.delete_entry(entry_for(entry.ip))
             Chef::Log.info "ACL entry '#{entry}' deleted."
-            new_resource.updated_by_last_action(true)
           end
         end
       end
 
       def acl
         @acl ||= fastly_client.list_acls(acl_options).find { |acl| acl.name == new_resource.name }
+      end
+
+      def entry_for(ip_address)
+        acl.list_entries.find { |entry| entry.ip == ip_address }
       end
 
       def entries
