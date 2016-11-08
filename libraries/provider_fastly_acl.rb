@@ -38,7 +38,6 @@ class Chef
           else
             acl.create_entry(ip: entry)
             Chef::Log.info "ACL entry '#{entry}' created."
-            new_resource.updated_by_last_action(true)
           end
         end
 
@@ -46,7 +45,6 @@ class Chef
           if !new_resource.entries.include?(entry)
             acl.delete_entry(entry_for(entry.ip))
             Chef::Log.info "ACL entry '#{entry}' deleted."
-            new_resource.updated_by_last_action(true)
           end
         end
       end
