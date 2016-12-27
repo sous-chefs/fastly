@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyACL < Chef::Provider::FastlyBase
 
+      provides :fastly_acl
+
       action :create do
         if acl.nil?
           fastly_client.create_acl(acl_options)

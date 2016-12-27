@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyDomain < Chef::Provider::FastlyBase
 
+      provides :fastly_domain
+
       action :create do
         if domain
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."

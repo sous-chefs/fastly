@@ -22,6 +22,8 @@ class Chef
   class Provider
     class FastlyHealthcheck < Chef::Provider::FastlyBase
 
+      provides :fastly_healthcheck
+
       action :create do
         if healthcheck
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."

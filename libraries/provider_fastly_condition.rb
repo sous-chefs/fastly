@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyCondition < Chef::Provider::FastlyBase
 
+      provides :fastly_condition
+
       action :create do
         if condition
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."

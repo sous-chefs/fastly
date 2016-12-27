@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyRequestSetting < Chef::Provider::FastlyBase
 
+      provides :fastly_request_setting
+
       action :create do
         if request_setting
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."
