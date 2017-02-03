@@ -15,7 +15,8 @@
   "delivery-truck": {
     "publish": {
       "github": "chef-cookbooks/fastly",
-      "supermarket": "https://supermarket.chef.io"
+      "supermarket": "https://supermarket.chef.io",
+      "supermarket-custom-credentials": true
     }
   }
 }
