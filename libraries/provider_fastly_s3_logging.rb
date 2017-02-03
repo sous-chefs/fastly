@@ -71,6 +71,13 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
+        unless s3_logging.message_type == new_resource.message_type
+          s3_logging.message_type = new_resource.message_type
+          s3_logging.save!
+          Chef::Log.info "#{ @new_resource } message_type updated."
+          new_resource.updated_by_last_action(true)
+        end
+
         unless s3_logging.access_key == new_resource.access_key
           s3_logging.access_key = new_resource.access_key
           s3_logging.save!

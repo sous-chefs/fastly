@@ -69,6 +69,12 @@ describe Chef::Resource::FastlyS3Logging do
     expect(@resource.format_version(2)).to eq(2)
   end
 
+  it "should allow message_type to be set" do
+    %w(classic loggly logplex blank).each do |message_type|
+      expect(@resource.message_type(message_type)).to eq(message_type)
+    end
+  end
+
   it "should set response condition if it is specified" do
     expect(@resource.response_condition('an_condition')).to eq('an_condition')
   end
