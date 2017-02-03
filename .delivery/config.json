@@ -14,7 +14,8 @@
   ],
   "delivery-truck": {
     "publish": {
-      "github": "chef-cookbooks/fastly"
+      "github": "chef-cookbooks/fastly",
+      "supermarket": "https://supermarket.chef.io"
     }
   }
 }
