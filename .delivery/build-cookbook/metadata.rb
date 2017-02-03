@@ -8,3 +8,5 @@ version          '0.0.1'
 
 depends 'delivery-truck'
 depends 'chef-sugar'
+
+gem 'fastly'
