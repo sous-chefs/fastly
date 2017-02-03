@@ -1,3 +1,7 @@
+v0.1.12 (2017-02-02)
+-------------------
+- Add `message_type` attribute to `fastly_s3_logging` resource
+
 v0.1.4 (2016-09-06)
 -------------------
 - Add `fastly_healthcheck` resource
