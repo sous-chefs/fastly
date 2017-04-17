@@ -49,12 +49,14 @@ class Chef
           :check_interval
         ].each do |property|
 
-          unless healthcheck.send(property) == new_resource.send(property)
-            if property == :http_method
-              healthcheck.send('method=', new_resource.send(property))
-            else
-              healthcheck.send("#{property}=", new_resource.send(property))
-            end
+          fastly_property = if property == :http_method
+                              :method
+                            else
+                              property
+                            end
+
+          unless healthcheck.send(fastly_property) == new_resource.send(property)
+            healthcheck.send("#{fastly_property}=", new_resource.send(property))
             healthcheck.save!
             Chef::Log.info "#{ @new_resource } #{property} updated."
             new_resource.updated_by_last_action(true)

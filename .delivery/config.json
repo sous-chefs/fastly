@@ -7,8 +7,6 @@
   "skip_phases": [
     "security",
     "smoke",
-    "provision",
-    "deploy",
     "quality",
     "functional"
   ],
@@ -16,7 +14,8 @@
     "publish": {
       "github": "chef-cookbooks/fastly",
       "supermarket": "https://supermarket.chef.io",
-      "supermarket-custom-credentials": true
+      "supermarket-custom-credentials": true,
+      "chef_server": true
     }
   }
 }

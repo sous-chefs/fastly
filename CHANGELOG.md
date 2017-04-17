@@ -1,3 +1,8 @@
+v0.2.1 (2017-04-17)
+-------------------
+- Enable chef-server publishing and delivery-truck pinning process
+- Fix logic error around :method invocation in `fastly_healthcheck`
+
 v0.2.0 (2017-04-17)
 -------------------
 - Changes the `method` attribute to `http_method` on the `fastly_healthcheck` resource to make it compatible with Chef 13
