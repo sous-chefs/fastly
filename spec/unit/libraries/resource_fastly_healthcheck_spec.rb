@@ -31,7 +31,7 @@ describe Chef::Resource::FastlyHealthcheck do
     timeout: 600,
     window: 10,
     threshold: 6,
-    method: "HEAD",
+    http_method: "HEAD",
     expected_response: 301,
     initial: 4,
     check_interval: 10000,

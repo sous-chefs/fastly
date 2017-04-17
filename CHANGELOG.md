@@ -1,3 +1,7 @@
+v0.2.0 (2017-04-17)
+-------------------
+- Changes the `method` attribute to `http_method` on the `fastly_healthcheck` resource to make it compatible with Chef 13
+
 v0.1.12 (2017-02-02)
 -------------------
 - Add `message_type` attribute to `fastly_s3_logging` resource
