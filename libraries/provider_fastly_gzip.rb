@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyGzip < Chef::Provider::FastlyBase
 
+      provides :fastly_gzip
+
       action :create do
         if gzip
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."

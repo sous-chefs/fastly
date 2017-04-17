@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyBackend < Chef::Provider::FastlyBase
 
+      provides :fastly_backend
+
       action :create do
         if backend
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."

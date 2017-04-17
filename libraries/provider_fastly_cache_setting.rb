@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyCacheSetting < Chef::Provider::FastlyBase
 
+      provides :fastly_cache_setting
+
       action :create do
         if cache_setting
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."

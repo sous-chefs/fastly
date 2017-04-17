@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyS3Logging < Chef::Provider::FastlyBase
 
+      provides :fastly_s3_logging
+      
       action :create do
         if s3_logging
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."

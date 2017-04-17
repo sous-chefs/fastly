@@ -23,6 +23,8 @@ class Chef
   class Provider
     class FastlyHeader < Chef::Provider::FastlyBase
 
+      provides :fastly_header
+
       action :create do
         if header
           Chef::Log.info "#{ @new_resource } already exists - nothing to do."
