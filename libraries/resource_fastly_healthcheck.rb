@@ -33,7 +33,7 @@ class Chef
       attribute :timeout, kind_of: Integer, default: 500
       attribute :window, kind_of: Integer, default: 5
       attribute :threshold, kind_of: Integer, default: 3
-      attribute :method, kind_of: String, default: "GET"
+      attribute :http_method, kind_of: String, default: "GET"
       attribute :expected_response, kind_of: Integer, default: 200
       attribute :initial, kind_of: Integer, default: 2
       attribute :check_interval, kind_of: Integer, default: 5000
