@@ -1,3 +1,7 @@
+v0.3.0 (2017-08-02)
+-------------------
+- Set the default format version to 2 and use an equivalent default format for s3_logging
+
 v0.2.1 (2017-04-17)
 -------------------
 - Enable chef-server publishing and delivery-truck pinning process

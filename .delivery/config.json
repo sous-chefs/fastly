@@ -4,6 +4,16 @@
     "name": "build-cookbook",
     "path": ".delivery/build-cookbook"
   },
+  "job_dispatch": {
+    "version": "v2",
+    "filters": {
+      "default": {
+        "os": ["linux"],
+        "platform": ["ubuntu"],
+        "platform_version": ["14.04"]
+      }
+    }
+  },
   "skip_phases": [
     "security",
     "smoke",
