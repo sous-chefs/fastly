@@ -1,3 +1,7 @@
+v0.4.0 (2017-08-16)
+-------------------
+- Add support for syslog logging endpoints.
+
 v0.3.1 (2017-08-02)
 -------------------
 - Merge in upstream changes
