@@ -83,8 +83,12 @@ class Chef
           new_resource.updated_by_last_action(true)
         end
 
-        unless syslog_logging.use_tls == new_resource.use_tls
-          syslog_logging.use_tls = new_resource.use_tls
+        # While the Fastly API docs indicate the expected value for this is
+        # a boolean, the `GET` method on this API shows the values as strings
+        # which are either "0" for false or "1" for true.
+        use_tls = new_resource.use_tls ? "1" : "0"
+        unless syslog_logging.use_tls == use_tls
+          syslog_logging.use_tls = use_tls
           syslog_logging.save!
           Chef::Log.info "#{ @new_resource } use_tls updated."
           new_resource.updated_by_last_action(true)
