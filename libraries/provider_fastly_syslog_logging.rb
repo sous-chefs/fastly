@@ -37,12 +37,8 @@ class Chef
 
       action :update do
 
-        # The attribute `response_conditions` is plural in the syslog class
-        # and singular, `response_condition` in the s3 class. We have
-        # normalized this as it is exposed in the chef cookbook and mapping
-        # it appropriately.
-        unless syslog_logging.response_conditions == new_resource.response_condition
-          syslog_logging.response_conditions = new_resource.response_condition
+        unless syslog_logging.response_condition == new_resource.response_condition
+          syslog_logging.response_condition = new_resource.response_condition
           syslog_logging.save!
           Chef::Log.info "#{ @new_resource } response_condition updated."
           new_resource.updated_by_last_action(true)
