@@ -8,3 +8,4 @@ version          '0.5.0'
 source_url       'https://github.com/chef-cookbooks/fastly'
 
 gem 'fastly'
+issues_url       'https://github.com/chef-cookbooks/fastly/issues'
