@@ -1,3 +1,7 @@
+v0.5.0 (2018-01-29)
+-------------------
+- fastly gem 1.13.2 changed the syslog response_conditions attribute to response_condition
+
 v0.4.0 (2017-08-16)
 -------------------
 - Add support for syslog logging endpoints.
