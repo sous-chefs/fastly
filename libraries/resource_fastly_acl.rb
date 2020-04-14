@@ -22,21 +22,19 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyACL < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_acl
       actions :create
       default_action :create
 
       attribute :entries, kind_of: Array, required: true, callbacks: {
-        "entries must be an array of valid ip addresses as strings" => proc do |entries|
-          entries.all? { |entry| (entry.is_a?(String) && self.valid_ip?(entry)) }
-        end
+        'entries must be an array of valid ip addresses as strings' => proc do |entries|
+          entries.all? { |entry| (entry.is_a?(String) && valid_ip?(entry)) }
+        end,
       }
 
       def self.valid_ip?(ip)
         ip =~ /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
       end
-
     end
   end
 end

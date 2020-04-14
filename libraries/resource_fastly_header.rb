@@ -22,34 +22,32 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyHeader < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_header
       actions :create
       default_action :create
 
-      attribute :request_condition, kind_of: String, default: ""
-      attribute :cache_condition, kind_of: String, default: ""
-      attribute :response_condition, kind_of: String, default: ""
-      attribute :header_action, kind_of: String, default: nil, equal_to: [
-        'set',
-        'append',
-        'delete',
-        'regex',
-        'regex_repeat'
-      ]
+      attribute :request_condition, kind_of: String, default: ''
+      attribute :cache_condition, kind_of: String, default: ''
+      attribute :response_condition, kind_of: String, default: ''
+      attribute :header_action, kind_of: String, default: nil, equal_to: %w(
+        set
+        append
+        delete
+        regex
+        regex_repeat
+      )
       attribute :ignore_if_set, kind_of: [TrueClass, FalseClass], default: false
-      attribute :type, kind_of: String, default: nil, required: true, equal_to: [
-        'request',
-        'cache',
-        'fetch',
-        'response'
-      ]
-      attribute :dst, kind_of: String, default: nil, required: true
+      attribute :type, kind_of: String, required: true, equal_to: %w(
+        request
+        cache
+        fetch
+        response
+      )
+      attribute :dst, kind_of: String, required: true
       attribute :src, kind_of: String, default: nil
       attribute :regexp, kind_of: String, default: nil
-      attribute :substitution, kind_of: String, default: ""
+      attribute :substitution, kind_of: String, default: ''
       attribute :priority, kind_of: Integer, default: nil
-
     end
   end
 end

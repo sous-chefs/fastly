@@ -22,18 +22,16 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyResponse < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_response
       actions :create
       default_action :create
 
-      attribute :request_condition, kind_of: String, default: ""
-      attribute :cache_condition, kind_of: String, default: ""
+      attribute :request_condition, kind_of: String, default: ''
+      attribute :cache_condition, kind_of: String, default: ''
       attribute :status, kind_of: Integer, default: 200
       attribute :content, kind_of: String, default: nil
       attribute :content_type, kind_of: String, default: nil
       attribute :response, kind_of: String, default: nil
-
     end
   end
 end

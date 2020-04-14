@@ -35,32 +35,28 @@ describe Chef::Provider::FastlyService do
   end
 
   describe '#get_auth_hash' do
-
     it 'returns a hash of the username and password when they are set' do
       @new_resource.username('an_username')
       @new_resource.password('an_password')
-      expect(@provider.get_auth_hash).to eq({username: 'an_username', password: 'an_password'})
+      expect(@provider.get_auth_hash).to eq({ username: 'an_username', password: 'an_password' })
     end
 
     it 'returns a hash of the api_key when it is set and username and password are not' do
       @new_resource.api_key('an_api_key')
-      expect(@provider.get_auth_hash).to eq({api_key: 'an_api_key'})
+      expect(@provider.get_auth_hash).to eq({ api_key: 'an_api_key' })
     end
 
     it 'should raise an exception if nothing is set' do
-      expect {@provider.get_auth_hash}.to raise_error
+      expect { @provider.get_auth_hash }.to raise_error
     end
   end
 
   describe '#fastly_client' do
-
     it 'returns a Fastly object' do
       @new_resource.api_key('an_api_key')
       expect(@provider.fastly_client.class).to eq(Fastly)
     end
-    
   end
-
 
   describe '#service' do
     before(:each) do
@@ -71,7 +67,6 @@ describe Chef::Provider::FastlyService do
           double(Fastly::Service, name: 'service_name', service_id: '1234abc'),
           double(Fastly::Service, name: 'another_service', service_id: 'cba4321'),
         ])
-
     end
 
     it 'returns service object if service name exists' do

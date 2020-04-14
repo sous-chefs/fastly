@@ -22,15 +22,13 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyCondition < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_condition
       actions :create
       default_action :create
 
-      attribute :type, kind_of: String, default: 'request', required: true, equal_to: ['request', 'cache', 'response']
+      attribute :type, kind_of: String, required: true, equal_to: %w(request cache response)
       attribute :statement, kind_of: String, required: true
       attribute :priority, kind_of: Integer, default: 10
-
     end
   end
 end

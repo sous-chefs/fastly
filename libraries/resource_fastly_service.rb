@@ -22,11 +22,9 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyService < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_service
       actions :create, :activate_latest, :purge_all
       default_action :create
-
     end
   end
 end

@@ -22,41 +22,38 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyGzip < Chef::Provider::FastlyBase
-
       action :create do
         if gzip
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_gzip
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         unless gzip.extensions == new_resource.extensions
           gzip.extensions = new_resource.extensions
           gzip.save!
-          Chef::Log.info "#{ @new_resource } extensions updated."
+          Chef::Log.info "#{@new_resource} extensions updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless gzip.cache_condition == new_resource.cache_condition
           gzip.cache_condition = new_resource.cache_condition
           gzip.save!
-          Chef::Log.info "#{ @new_resource } cache_condition updated."
+          Chef::Log.info "#{@new_resource} cache_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless gzip.content_types == new_resource.content_types
           gzip.content_types = new_resource.content_types
           gzip.save!
-          Chef::Log.info "#{ @new_resource } content_types updated."
+          Chef::Log.info "#{@new_resource} content_types updated."
           new_resource.updated_by_last_action(true)
         end
-
       end
 
       def gzip
@@ -74,10 +71,9 @@ class Chef
         fastly_client.create_gzip(
           service_id: service.id,
           version: service.version.number,
-          name: new_resource.name,
+          name: new_resource.name
         )
       end
-
     end
   end
 end

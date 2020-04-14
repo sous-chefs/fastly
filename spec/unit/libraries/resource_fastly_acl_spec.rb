@@ -20,12 +20,11 @@ require 'spec_helper'
 require 'libraries/resource_fastly_acl'
 
 describe Chef::Resource::FastlyACL do
-
   before(:each) do
     @resource = Chef::Resource::FastlyACL.new('acl_name')
   end
 
-  it "should set the entries" do
+  it 'should set the entries' do
     expect(@resource.entries(['1.2.3.4'])).to eq(['1.2.3.4'])
   end
 
@@ -40,5 +39,4 @@ describe Chef::Resource::FastlyACL do
   it 'should raise validation error when not passed a valid ip' do
     expect { @resource.entries(['256.0.0.0']) }.to raise_error Chef::Exceptions::ValidationFailed
   end
-
 end

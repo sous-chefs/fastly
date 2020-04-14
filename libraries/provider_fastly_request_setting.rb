@@ -22,83 +22,80 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyRequestSetting < Chef::Provider::FastlyBase
-
       action :create do
         if request_setting
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_request_setting
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         unless request_setting.force_ssl == fastly_bool(new_resource.force_ssl)
           request_setting.force_ssl = fastly_bool(new_resource.force_ssl)
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } force_ssl updated."
+          Chef::Log.info "#{@new_resource} force_ssl updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.request_condition == new_resource.request_condition
           request_setting.request_condition = new_resource.request_condition
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } request_condition updated."
+          Chef::Log.info "#{@new_resource} request_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.force_miss == fastly_bool(new_resource.force_miss)
           request_setting.force_miss = fastly_bool(new_resource.force_miss)
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } force_miss updated."
+          Chef::Log.info "#{@new_resource} force_miss updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.bypass_busy_wait == fastly_bool(new_resource.bypass_busy_wait)
           request_setting.bypass_busy_wait = fastly_bool(new_resource.bypass_busy_wait)
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } bypass_busy_wait updated."
+          Chef::Log.info "#{@new_resource} bypass_busy_wait updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.default_host == new_resource.default_host
           request_setting.default_host = new_resource.default_host
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } default_host updated."
+          Chef::Log.info "#{@new_resource} default_host updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.hash_keys == new_resource.hash_keys
           request_setting.hash_keys = new_resource.hash_keys
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } hash_keys updated."
+          Chef::Log.info "#{@new_resource} hash_keys updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.max_stale_age == new_resource.max_stale_age
           request_setting.max_stale_age = new_resource.max_stale_age
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } max_stale_age updated."
+          Chef::Log.info "#{@new_resource} max_stale_age updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.action == new_resource.request_action
           request_setting.action = new_resource.request_action
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } request_action updated."
+          Chef::Log.info "#{@new_resource} request_action updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless request_setting.xff == new_resource.x_forwarded_for
           request_setting.xff = new_resource.x_forwarded_for
           request_setting.save!
-          Chef::Log.info "#{ @new_resource } x_forwarded_for updated."
+          Chef::Log.info "#{@new_resource} x_forwarded_for updated."
           new_resource.updated_by_last_action(true)
         end
-
       end
 
       def request_setting

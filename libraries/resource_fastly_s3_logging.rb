@@ -22,23 +22,22 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyS3Logging < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_s3_logging
       actions :create
       default_action :create
 
-      attribute :response_condition, kind_of: String, default: ""
+      attribute :response_condition, kind_of: String, default: ''
       attribute :bucket_name, kind_of: String, required: true
       attribute :access_key, kind_of: String, required: true
       attribute :secret_key, kind_of: String, required: true
       attribute :path, kind_of: String, default: nil
-      attribute :format, kind_of: String, default: "%h %l %u %{now}V %{req.request}V %{req.url}V %>s"
+      attribute :format, kind_of: String, default: '%h %l %u %{now}V %{req.request}V %{req.url}V %>s'
       attribute :format_version, kind_of: Integer, default: 2
-      attribute :message_type, kind_of: String, default: "classic", equal_to: ["classic", "loggly", "logplex", "blank"]
+      attribute :message_type, kind_of: String, default: 'classic', equal_to: %w(classic loggly logplex blank)
       attribute :period, kind_of: Integer, default: 3600
       attribute :gzip_level, kind_of: Integer, default: 3
-      attribute :domain, kind_of: String, default: "s3.amazonaws.com"
-      attribute :redundancy, kind_of: String, default: "Standard"
+      attribute :domain, kind_of: String, default: 's3.amazonaws.com'
+      attribute :redundancy, kind_of: String, default: 'Standard'
     end
   end
 end

@@ -21,7 +21,6 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyHealthcheck < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_healthcheck
       actions :create
       default_action :create
@@ -29,11 +28,11 @@ class Chef
       attribute :comment, kind_of: String, default: nil
       attribute :path, kind_of: String, required: true
       attribute :host, kind_of: String, required: true
-      attribute :http_version, kind_of: String, default: "1.1"
+      attribute :http_version, kind_of: String, default: '1.1'
       attribute :timeout, kind_of: Integer, default: 500
       attribute :window, kind_of: Integer, default: 5
       attribute :threshold, kind_of: Integer, default: 3
-      attribute :http_method, kind_of: String, default: "GET"
+      attribute :http_method, kind_of: String, default: 'GET'
       attribute :expected_response, kind_of: Integer, default: 200
       attribute :initial, kind_of: Integer, default: 2
       attribute :check_interval, kind_of: Integer, default: 5000

@@ -22,48 +22,45 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyCacheSetting < Chef::Provider::FastlyBase
-
       action :create do
         if cache_setting
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_cache_setting
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         unless cache_setting.cache_condition == new_resource.cache_condition
           cache_setting.cache_condition = new_resource.cache_condition
           cache_setting.save!
-          Chef::Log.info "#{ @new_resource } cache_condition updated."
+          Chef::Log.info "#{@new_resource} cache_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless cache_setting.ttl.to_i == new_resource.ttl
           cache_setting.ttl = new_resource.ttl
           cache_setting.save!
-          Chef::Log.info "#{ @new_resource } ttl updated."
+          Chef::Log.info "#{@new_resource} ttl updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless cache_setting.stale_ttl.to_i == new_resource.stale_ttl
           cache_setting.stale_ttl = new_resource.stale_ttl
           cache_setting.save!
-          Chef::Log.info "#{ @new_resource } stale_ttl updated."
+          Chef::Log.info "#{@new_resource} stale_ttl updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless cache_setting.action == new_resource.cache_action
           cache_setting.action = new_resource.cache_action
           cache_setting.save!
-          Chef::Log.info "#{ @new_resource } cache_action updated."
+          Chef::Log.info "#{@new_resource} cache_action updated."
           new_resource.updated_by_last_action(true)
         end
-
       end
 
       def cache_setting
@@ -81,10 +78,9 @@ class Chef
         fastly_client.create_cache_setting(
           service_id: service.id,
           version: service.version.number,
-          name: new_resource.name,
+          name: new_resource.name
         )
       end
-
     end
   end
 end

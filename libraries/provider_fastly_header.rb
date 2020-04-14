@@ -22,104 +22,101 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyHeader < Chef::Provider::FastlyBase
-
       action :create do
         if header
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_header
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         unless header.request_condition == new_resource.request_condition
           header.request_condition = new_resource.request_condition
           header.save!
-          Chef::Log.info "#{ @new_resource } request_condition updated."
+          Chef::Log.info "#{@new_resource} request_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.response_condition == new_resource.response_condition
           header.response_condition = new_resource.response_condition
           header.save!
-          Chef::Log.info "#{ @new_resource } response_condition updated."
+          Chef::Log.info "#{@new_resource} response_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.cache_condition == new_resource.cache_condition
           header.cache_condition = new_resource.cache_condition
           header.save!
-          Chef::Log.info "#{ @new_resource } cache_condition updated."
+          Chef::Log.info "#{@new_resource} cache_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.ignore_if_set == fastly_bool(new_resource.ignore_if_set)
           header.ignore_if_set = fastly_bool(new_resource.ignore_if_set)
           header.save!
-          Chef::Log.info "#{ @new_resource } ignore_if_set updated."
+          Chef::Log.info "#{@new_resource} ignore_if_set updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.action == new_resource.header_action
           header.action = new_resource.header_action
           header.save!
-          Chef::Log.info "#{ @new_resource } header_action updated."
+          Chef::Log.info "#{@new_resource} header_action updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.type == new_resource.type
           header.type = new_resource.type
           header.save!
-          Chef::Log.info "#{ @new_resource } type updated."
+          Chef::Log.info "#{@new_resource} type updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.dst == new_resource.dst
           header.dst = new_resource.dst
           header.save!
-          Chef::Log.info "#{ @new_resource } dst updated."
+          Chef::Log.info "#{@new_resource} dst updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.src == new_resource.src
           header.src = new_resource.src
           header.save!
-          Chef::Log.info "#{ @new_resource } src updated."
+          Chef::Log.info "#{@new_resource} src updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.regex == new_resource.regexp
           header.regex = new_resource.regexp
           header.save!
-          Chef::Log.info "#{ @new_resource } regexp updated."
+          Chef::Log.info "#{@new_resource} regexp updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.substitution == new_resource.substitution
           header.substitution = new_resource.substitution
           header.save!
-          Chef::Log.info "#{ @new_resource } substitution updated."
+          Chef::Log.info "#{@new_resource} substitution updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless header.priority.to_i == new_resource.priority
           header.priority = new_resource.priority
           header.save!
-          Chef::Log.info "#{ @new_resource } priority updated."
+          Chef::Log.info "#{@new_resource} priority updated."
           new_resource.updated_by_last_action(true)
         end
-
       end
 
       def header
         unless @header
           @header = fastly_client.list_headers(
             service_id: service.id,
-            version: service.version.number,
+            version: service.version.number
           ).select { |b| b.name == new_resource.name }
           @header = @header.first
         end

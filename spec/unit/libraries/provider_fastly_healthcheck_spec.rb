@@ -20,7 +20,6 @@ require 'libraries/provider_fastly_healthcheck'
 require 'libraries/resource_fastly_healthcheck'
 
 describe Chef::Provider::FastlyHealthcheck do
-
   let(:node) { stub_node(platform: 'ubuntu', version: '12.04') }
   let(:run_context) { Chef::RunContext.new(node, {}, nil) }
 
@@ -50,7 +49,7 @@ describe Chef::Provider::FastlyHealthcheck do
       allow(provider.fastly_client).to receive(:list_healthchecks) \
         .and_return([
           double(Fastly::Healthcheck, name: 'an_healthcheck'),
-          double(Fastly::Healthcheck, name: 'an_second_healthcheck')
+          double(Fastly::Healthcheck, name: 'an_second_healthcheck'),
       ])
     end
 

@@ -21,15 +21,14 @@ require 'chef/resource/lwrp_base'
 class Chef
   class Resource
     class FastlyCacheSetting < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_cache_setting
       actions :create
       default_action :create
 
-      attribute :cache_condition, kind_of: String, default: ""
+      attribute :cache_condition, kind_of: String, default: ''
       attribute :stale_ttl, kind_of: Integer, default: nil
       attribute :ttl, kind_of: Integer, default: nil
-      attribute :cache_action, kind_of: String, default: nil, equal_to: ['pass', 'cache', 'restart']
+      attribute :cache_action, kind_of: String, default: nil, equal_to: %w(pass cache restart)
     end
   end
 end

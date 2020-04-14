@@ -20,37 +20,35 @@ require 'spec_helper'
 require 'libraries/resource_fastly_base'
 
 describe Chef::Resource::FastlyBase do
-
   before(:each) do
     @resource = Chef::Resource::FastlyBase.new('an_base')
   end
 
-  it "should have the name set" do
+  it 'should have the name set' do
     expect(@resource.name).to eq('an_base')
   end
 
-  it "should let you set the name string" do
+  it 'should let you set the name string' do
     expect(@resource.name('an_new_base')).to eq('an_new_base')
   end
 
-  it "should set the resource_name to :fastly_base" do
+  it 'should set the resource_name to :fastly_base' do
     expect(@resource.resource_name).to eq(:fastly_base)
   end
 
-  it "should allow the username to be set" do
+  it 'should allow the username to be set' do
     expect(@resource.username('an_username')).to eq('an_username')
   end
 
-  it "should allow the password to be set" do
+  it 'should allow the password to be set' do
     expect(@resource.password('an_password')).to eq('an_password')
   end
 
-  it "should allow the api_key to be set" do
+  it 'should allow the api_key to be set' do
     expect(@resource.api_key('an_api_key')).to eq('an_api_key')
   end
 
-  it "should allow the service to be set" do
+  it 'should allow the service to be set' do
     expect(@resource.service('service')).to eq('service')
   end
-
 end
