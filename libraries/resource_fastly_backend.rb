@@ -22,20 +22,18 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyBackend < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_backend
       actions :create
       default_action :create
 
-      attribute :request_condition, kind_of: String, default: ""
-      attribute :service, kind_of: String, default: nil, required: true
+      attribute :request_condition, kind_of: String, default: ''
+      attribute :service, kind_of: String, required: true
       attribute :port, kind_of: Integer, default: 80
       attribute :ssl, kind_of: [TrueClass, FalseClass], default: false
       attribute :address, kind_of: String, name_attribute: true, required: true
       attribute :auto_loadbalance, kind_of: [TrueClass, FalseClass], default: false
       attribute :shield, kind_of: String
       attribute :healthcheck, kind_of: String
-
     end
   end
 end

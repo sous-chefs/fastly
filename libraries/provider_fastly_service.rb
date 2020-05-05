@@ -22,20 +22,18 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyService < Chef::Provider::FastlyBase
-
       action :create do
         if service
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_service
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
-
       end
 
       action :activate_latest do
-        Chef::Log.info "#{ @new_resource } activated."
+        Chef::Log.info "#{@new_resource} activated."
         service.version.activate!
         service.version.clone
         new_resource.updated_by_last_action(true)
@@ -54,7 +52,6 @@ class Chef
       def create_service
         fastly_client.create_service(name: new_resource.name)
       end
-
     end
   end
 end

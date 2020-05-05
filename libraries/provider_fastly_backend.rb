@@ -22,45 +22,43 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyBackend < Chef::Provider::FastlyBase
-
       action :create do
         if backend
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_backend
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         unless backend.address == new_resource.address
           backend.address = new_resource.address
           backend.save!
-          Chef::Log.info "#{ @new_resource } address updated."
+          Chef::Log.info "#{@new_resource} address updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless backend.request_condition == new_resource.request_condition
           backend.request_condition = new_resource.request_condition
           backend.save!
-          Chef::Log.info "#{ @new_resource } request_condition updated."
+          Chef::Log.info "#{@new_resource} request_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless backend.port == new_resource.port
           backend.port = new_resource.port
           backend.save!
-          Chef::Log.info "#{ @new_resource } port updated."
+          Chef::Log.info "#{@new_resource} port updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless backend.use_ssl == new_resource.ssl
           backend.use_ssl = new_resource.ssl
           backend.save!
-          Chef::Log.info "#{ @new_resource } ssl updated."
+          Chef::Log.info "#{@new_resource} ssl updated."
           new_resource.updated_by_last_action(true)
         end
 
@@ -68,7 +66,7 @@ class Chef
           backend.auto_loadbalance = new_resource.auto_loadbalance
           fastly_client.update_backend(backend)
           backend.save!
-          Chef::Log.info "#{ @new_resource } auto_loadbalance updated."
+          Chef::Log.info "#{@new_resource} auto_loadbalance updated."
           new_resource.updated_by_last_action(true)
         end
 
@@ -76,7 +74,7 @@ class Chef
           backend.shield = new_resource.shield
           fastly_client.update_backend(backend)
           backend.save!
-          Chef::Log.info "#{ @new_resource } shield updated."
+          Chef::Log.info "#{@new_resource} shield updated."
           new_resource.updated_by_last_action(true)
         end
 
@@ -84,7 +82,7 @@ class Chef
           backend.healthcheck = new_resource.healthcheck
           fastly_client.update_backend(backend)
           backend.save!
-          Chef::Log.info "#{ @new_resource } healthcheck updated."
+          Chef::Log.info "#{@new_resource} healthcheck updated."
           new_resource.updated_by_last_action(true)
         end
       end
@@ -108,7 +106,6 @@ class Chef
           address: new_resource.address
         )
       end
-
     end
   end
 end

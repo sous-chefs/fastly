@@ -22,14 +22,13 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyGzip < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_gzip
       actions :create, :update
       default_action :create
 
       attribute :extensions, kind_of: String, default: nil
       attribute :content_types, kind_of: String, default: nil
-      attribute :cache_condition, kind_of: String, default: ""
+      attribute :cache_condition, kind_of: String, default: ''
     end
   end
 end

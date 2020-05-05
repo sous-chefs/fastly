@@ -21,20 +21,18 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyHealthcheck < Chef::Provider::FastlyBase
-
       action :create do
         if healthcheck
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_healthcheck
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         [
           :comment,
           :path,
@@ -46,23 +44,20 @@ class Chef
           :http_method,
           :expected_response,
           :initial,
-          :check_interval
+          :check_interval,
         ].each do |property|
-
           fastly_property = if property == :http_method
                               :method
                             else
                               property
                             end
 
-          unless healthcheck.send(fastly_property) == new_resource.send(property)
-            healthcheck.send("#{fastly_property}=", new_resource.send(property))
-            healthcheck.save!
-            Chef::Log.info "#{ @new_resource } #{property} updated."
-            new_resource.updated_by_last_action(true)
-          end
+          next if healthcheck.send(fastly_property) == new_resource.send(property)
+          healthcheck.send("#{fastly_property}=", new_resource.send(property))
+          healthcheck.save!
+          Chef::Log.info "#{@new_resource} #{property} updated."
+          new_resource.updated_by_last_action(true)
         end
-
       end
 
       def healthcheck
@@ -78,10 +73,9 @@ class Chef
         fastly_client.create_healthcheck(
           service_id: service.id,
           version: service.version.number,
-          name: new_resource.name,
+          name: new_resource.name
         )
       end
-
     end
   end
 end

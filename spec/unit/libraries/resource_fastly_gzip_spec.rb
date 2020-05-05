@@ -20,25 +20,24 @@ require 'spec_helper'
 require 'libraries/resource_fastly_gzip'
 
 describe Chef::Resource::FastlyGzip do
-
   before(:each) do
     @resource = Chef::Resource::FastlyGzip.new('an_gzip')
   end
 
-  it "should set the resource_name to :fastly_gzip" do
+  it 'should set the resource_name to :fastly_gzip' do
     expect(@resource.resource_name).to eq(:fastly_gzip)
   end
 
-  it "should be able to set extensions" do
+  it 'should be able to set extensions' do
     expect(@resource.extensions('js html css')).to eq('js html css')
   end
 
-  it "should be able to set content_types" do
+  it 'should be able to set content_types' do
     expect(@resource.content_types('text/html application/x-javascript')).to \
       eq('text/html application/x-javascript')
   end
 
-  it "should be able to set cache_condition" do
+  it 'should be able to set cache_condition' do
     expect(@resource.cache_condition('an_condition')).to eq('an_condition')
   end
 end

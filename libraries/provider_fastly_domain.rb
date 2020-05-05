@@ -22,13 +22,12 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyDomain < Chef::Provider::FastlyBase
-
       action :create do
         if domain
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_domain
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
       end
@@ -48,7 +47,6 @@ class Chef
           name: new_resource.name
         )
       end
-
     end
   end
 end

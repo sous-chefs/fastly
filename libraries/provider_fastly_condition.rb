@@ -22,41 +22,38 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyCondition < Chef::Provider::FastlyBase
-
       action :create do
         if condition
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_condition
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         unless condition.statement == new_resource.statement
           condition.statement = new_resource.statement
           condition.save!
-          Chef::Log.info "#{ @new_resource } statement updated."
+          Chef::Log.info "#{@new_resource} statement updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless condition.priority.to_i == new_resource.priority
           condition.priority = new_resource.priority
           condition.save!
-          Chef::Log.info "#{ @new_resource } priority updated."
+          Chef::Log.info "#{@new_resource} priority updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless condition.type == new_resource.type.upcase
           condition.type = new_resource.type.upcase
           condition.save!
-          Chef::Log.info "#{ @new_resource } type updated."
+          Chef::Log.info "#{@new_resource} type updated."
           new_resource.updated_by_last_action(true)
         end
-
       end
 
       def condition
@@ -79,7 +76,6 @@ class Chef
           statement: new_resource.statement
         )
       end
-
     end
   end
 end

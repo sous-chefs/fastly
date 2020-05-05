@@ -90,8 +90,8 @@ fastly_gzip 'standard_gzip' do
     'image/svg+xml',
     'image/vnd.microsoft.icon',
     'text/plain',
-    'text/xml'
-  ].join(" ")
+    'text/xml',
+  ].join(' ')
 end
 
 fastly_response 'subdomain_redirect' do

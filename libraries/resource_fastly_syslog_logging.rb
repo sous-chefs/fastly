@@ -23,17 +23,16 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlySyslogLogging < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_syslog_logging
       actions :create
       default_action :create
 
-      attribute :response_condition, kind_of: String, default: ""
+      attribute :response_condition, kind_of: String, default: ''
       attribute :hostname, kind_of: String, required: true
       attribute :port, kind_of: Integer, default: 514
       attribute :token, kind_of: String, default: nil
-      attribute :format, kind_of: String, default: "%h %l %u %t %r %>s"
-      attribute :message_type, kind_of: String, default: "classic", equal_to: ["classic", "loggly", "logplex", "blank"]
+      attribute :format, kind_of: String, default: '%h %l %u %t %r %>s'
+      attribute :message_type, kind_of: String, default: 'classic', equal_to: %w(classic loggly logplex blank)
       attribute :use_tls, kind_of: [TrueClass, FalseClass], default: false
       attribute :tls_hostname, kind_of: String
       attribute :tls_cert, kind_of: String

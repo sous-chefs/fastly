@@ -22,22 +22,21 @@ require_relative 'resource_fastly_base'
 class Chef
   class Resource
     class FastlyRequestSetting < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_request_setting
       actions :create
       default_action :create
 
-      attribute :request_condition, kind_of: String, default: ""
+      attribute :request_condition, kind_of: String, default: ''
       attribute :force_ssl, kind_of: [TrueClass, FalseClass], default: nil
       attribute :force_miss, kind_of: [TrueClass, FalseClass], default: nil
       attribute :bypass_busy_wait, kind_of: [TrueClass, FalseClass], default: nil
       attribute :default_host, kind_of: String, default: nil
       attribute :hash_keys, kind_of: String, default: nil
       attribute :max_stale_age, kind_of: Integer, default: nil
-      attribute :request_action, kind_of: String, default: nil, equal_to: ['pass', 'lookup']
-      attribute :x_forwarded_for, kind_of: String, default: nil, equal_to: [
-        'clear', 'leave', 'append', 'append_all', 'overwrite'
-      ]
+      attribute :request_action, kind_of: String, default: nil, equal_to: %w(pass lookup)
+      attribute :x_forwarded_for, kind_of: String, default: nil, equal_to: %w(
+        clear leave append append_all overwrite
+      )
     end
   end
 end

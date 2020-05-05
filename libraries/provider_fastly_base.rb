@@ -21,9 +21,6 @@ require 'chef/provider/lwrp_base'
 class Chef
   class Provider
     class FastlyBase < Chef::Provider::LWRPBase
-
-      use_inline_resources if defined?(use_inline_resources)
-
       def whyrun_supported?
         false
       end
@@ -33,14 +30,14 @@ class Chef
 
       def get_auth_hash
         if new_resource.username && new_resource.password
-          return {username: new_resource.username, password: new_resource.password}
+          return { username: new_resource.username, password: new_resource.password }
         end
 
         if new_resource.api_key
-          return {api_key: new_resource.api_key}
+          return { api_key: new_resource.api_key }
         end
 
-        fail "A username and password or api key must be set"
+        raise 'A username and password or api key must be set'
       end
 
       def fastly_client
@@ -56,22 +53,21 @@ class Chef
         if @service.first
           @service.first
         else
-          fail "The service does not exist"
+          raise 'The service does not exist'
         end
       end
 
       def fastly_bool(bool)
-        if bool == nil
+        if bool.nil?
           nil
         end
 
         if bool
-          "1"
+          '1'
         else
-          "0"
+          '0'
         end
       end
-
     end
   end
 end

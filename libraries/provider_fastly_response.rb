@@ -22,62 +22,59 @@ require_relative 'provider_fastly_base'
 class Chef
   class Provider
     class FastlyResponse < Chef::Provider::FastlyBase
-
       action :create do
         if response
-          Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
         else
           create_response
-          Chef::Log.info "#{ @new_resource } created."
+          Chef::Log.info "#{@new_resource} created."
           new_resource.updated_by_last_action(true)
         end
         action_update
       end
 
       action :update do
-
         unless response.status.to_i == new_resource.status
           response.status = new_resource.status
           response.save!
-          Chef::Log.info "#{ @new_resource } status updated."
+          Chef::Log.info "#{@new_resource} status updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless response.request_condition == new_resource.request_condition
           response.request_condition = new_resource.request_condition
           response.save!
-          Chef::Log.info "#{ @new_resource } request_condition updated."
+          Chef::Log.info "#{@new_resource} request_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless response.cache_condition == new_resource.cache_condition
           response.cache_condition = new_resource.cache_condition
           response.save!
-          Chef::Log.info "#{ @new_resource } cache_condition updated."
+          Chef::Log.info "#{@new_resource} cache_condition updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless response.content == new_resource.content
           response.content = new_resource.content
           response.save!
-          Chef::Log.info "#{ @new_resource } content updated."
+          Chef::Log.info "#{@new_resource} content updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless response.content_type == new_resource.content_type
           response.content_type = new_resource.content_type
           response.save!
-          Chef::Log.info "#{ @new_resource } content_type updated."
+          Chef::Log.info "#{@new_resource} content_type updated."
           new_resource.updated_by_last_action(true)
         end
 
         unless response.response == new_resource.response
           response.response = new_resource.response
           response.save!
-          Chef::Log.info "#{ @new_resource } response updated."
+          Chef::Log.info "#{@new_resource} response updated."
           new_resource.updated_by_last_action(true)
         end
-
       end
 
       def response
@@ -95,10 +92,9 @@ class Chef
         fastly_client.create_response_object(
           service_id: service.id,
           version: service.version.number,
-          name: new_resource.name,
+          name: new_resource.name
         )
       end
-
     end
   end
 end

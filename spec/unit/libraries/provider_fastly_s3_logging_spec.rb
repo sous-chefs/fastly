@@ -52,7 +52,7 @@ describe Chef::Provider::FastlyS3Logging do
       allow(@provider.fastly_client).to receive(:list_s3_loggings) \
         .and_return([
           double(Fastly::S3Logging, name: 'an_s3'),
-          double(Fastly::S3Logging, name: 'an_second_s3')
+          double(Fastly::S3Logging, name: 'an_second_s3'),
       ])
     end
 

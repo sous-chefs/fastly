@@ -21,7 +21,6 @@ require 'chef/resource/lwrp_base'
 class Chef
   class Resource
     class FastlyBase < Chef::Resource::LWRPBase
-
       self.resource_name = :fastly_base
       actions :create
       default_action :create
@@ -29,8 +28,7 @@ class Chef
       attribute :username, kind_of: String, default: nil
       attribute :password, kind_of: String, default: nil
       attribute :api_key, kind_of: String, default: nil
-      attribute :service, kind_of: String, default: nil, required: true
-
+      attribute :service, kind_of: String, required: true
     end
   end
 end

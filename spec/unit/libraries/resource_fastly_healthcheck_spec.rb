@@ -19,24 +19,23 @@ require 'spec_helper'
 require 'libraries/resource_fastly_healthcheck'
 
 describe Chef::Resource::FastlyHealthcheck do
-
   let(:resource) { Chef::Resource::FastlyHealthcheck.new('an_healthcheck') }
 
   {
     name: 'an_healthcheck',
     comment: 'random comment',
-    path: '/_status' ,
+    path: '/_status',
     host: 'origin.mysite.com',
-    http_version: "1.0",
+    http_version: '1.0',
     timeout: 600,
     window: 10,
     threshold: 6,
-    http_method: "HEAD",
+    http_method: 'HEAD',
     expected_response: 301,
     initial: 4,
     check_interval: 10000,
   }.each do |property_name, expected_value|
-    it "should let you set the name string" do
+    it 'should let you set the name string' do
       expect(resource.send(property_name, expected_value)).to eq(expected_value)
     end
   end

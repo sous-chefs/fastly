@@ -35,32 +35,28 @@ describe Chef::Provider::FastlyCacheSetting do
   end
 
   describe '#get_auth_hash' do
-
     it 'returns a hash of the username and password when they are set' do
       @new_resource.username('an_username')
       @new_resource.password('an_password')
-      expect(@provider.get_auth_hash).to eq({username: 'an_username', password: 'an_password'})
+      expect(@provider.get_auth_hash).to eq({ username: 'an_username', password: 'an_password' })
     end
 
     it 'returns a hash of the api_key when it is set and username and password are not' do
       @new_resource.api_key('an_api_key')
-      expect(@provider.get_auth_hash).to eq({api_key: 'an_api_key'})
+      expect(@provider.get_auth_hash).to eq({ api_key: 'an_api_key' })
     end
 
     it 'should raise an exception if nothing is set' do
-      expect {@provider.get_auth_hash}.to raise_error
+      expect { @provider.get_auth_hash }.to raise_error
     end
   end
 
   describe '#fastly_client' do
-
     it 'returns a Fastly object' do
       @new_resource.api_key('an_api_key')
       expect(@provider.fastly_client.class).to eq(Fastly)
     end
-    
   end
-
 
   describe '#service' do
     before(:each) do
@@ -72,7 +68,6 @@ describe Chef::Provider::FastlyCacheSetting do
           double(Fastly::Service, name: 'service_name', id: '1234abc'),
           double(Fastly::Service, name: 'another_service', id: 'cba4321'),
         ])
-
     end
 
     it 'returns service object if service name exists' do
@@ -81,7 +76,7 @@ describe Chef::Provider::FastlyCacheSetting do
 
     it 'throws an exception if no service is found' do
       @new_resource.service('not_found')
-      expect {@provider.service}.to raise_error
+      expect { @provider.service }.to raise_error
     end
   end
 
@@ -92,7 +87,7 @@ describe Chef::Provider::FastlyCacheSetting do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service, 
+          double(Fastly::Service,
            name: 'service_name',
            id: '1234abc',
            version: double(Fastly::Version, number: 10)
@@ -103,7 +98,7 @@ describe Chef::Provider::FastlyCacheSetting do
       allow(@provider.fastly_client).to receive(:list_cache_settings) \
         .and_return([
           double(Fastly::CacheSetting, name: 'an_cache_setting'),
-          double(Fastly::CacheSetting, name: 'an_second_setting')
+          double(Fastly::CacheSetting, name: 'an_second_setting'),
       ])
     end
 
@@ -124,7 +119,7 @@ describe Chef::Provider::FastlyCacheSetting do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service, 
+          double(Fastly::Service,
            name: 'service_name',
            id: '1234abc',
            version: double(Fastly::Version, number: 10)

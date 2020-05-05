@@ -21,11 +21,9 @@ require 'chef/resource/lwrp_base'
 class Chef
   class Resource
     class FastlyDomain < Chef::Resource::FastlyBase
-
       self.resource_name = :fastly_domain
       actions :create
       default_action :create
-
     end
   end
 end

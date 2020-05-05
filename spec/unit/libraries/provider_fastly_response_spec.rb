@@ -52,7 +52,7 @@ describe Chef::Provider::FastlyResponse do
       allow(@provider.fastly_client).to receive(:list_response_objects) \
         .and_return([
           double(Fastly::ResponseObject, name: 'an_response'),
-          double(Fastly::ResponseObject, name: 'another_response')
+          double(Fastly::ResponseObject, name: 'another_response'),
       ])
     end
 

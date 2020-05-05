@@ -20,62 +20,61 @@ require 'spec_helper'
 require 'libraries/resource_fastly_s3_logging'
 
 describe Chef::Resource::FastlyS3Logging do
-
   before(:each) do
     @resource = Chef::Resource::FastlyS3Logging.new('an_s3')
   end
 
-  it "should have the name set" do
+  it 'should have the name set' do
     expect(@resource.name).to eq('an_s3')
   end
 
-  it "should let you set the name string" do
+  it 'should let you set the name string' do
     expect(@resource.name('an_new_s3')).to eq('an_new_s3')
   end
 
-  it "should set the resource_name to :fastly_s3_logging" do
+  it 'should set the resource_name to :fastly_s3_logging' do
     expect(@resource.resource_name).to eq(:fastly_s3_logging)
   end
 
-  it "should allow bucket_name to be set" do
+  it 'should allow bucket_name to be set' do
     expect(@resource.bucket_name('an_bucket')).to eq('an_bucket')
   end
 
-  it "should allow access_key to be set" do
+  it 'should allow access_key to be set' do
     expect(@resource.access_key('an_access_key')).to eq('an_access_key')
   end
 
-  it "should allow secret_key to be set" do
+  it 'should allow secret_key to be set' do
     expect(@resource.secret_key('an_secret_key')).to eq('an_secret_key')
   end
 
-  it "should allow path to be set" do
+  it 'should allow path to be set' do
     expect(@resource.path('/an/path')).to eq('/an/path')
   end
 
-  it "should allow period to be set" do
+  it 'should allow period to be set' do
     expect(@resource.period(60)).to eq(60)
   end
 
-  it "should allow gzip_level to be set" do
+  it 'should allow gzip_level to be set' do
     expect(@resource.gzip_level(9)).to eq(9)
   end
 
-  it "should allow format to be set" do
+  it 'should allow format to be set' do
     expect(@resource.format('an_format')).to eq('an_format')
   end
 
-  it "should allow format_version to be set" do
+  it 'should allow format_version to be set' do
     expect(@resource.format_version(2)).to eq(2)
   end
 
-  it "should allow message_type to be set" do
+  it 'should allow message_type to be set' do
     %w(classic loggly logplex blank).each do |message_type|
       expect(@resource.message_type(message_type)).to eq(message_type)
     end
   end
 
-  it "should set response condition if it is specified" do
+  it 'should set response condition if it is specified' do
     expect(@resource.response_condition('an_condition')).to eq('an_condition')
   end
 end
