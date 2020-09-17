@@ -50,11 +50,7 @@ class Chef
 
       def service
         @service = fastly_client.list_services.select { |svc| svc.name == new_resource.service }
-        if @service.first
-          @service.first
-        else
-          raise 'The service does not exist'
-        end
+        @service.first || raise('The service does not exist')
       end
 
       def fastly_bool(bool)
