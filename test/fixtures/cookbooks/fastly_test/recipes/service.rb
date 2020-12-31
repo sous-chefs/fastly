@@ -111,4 +111,3 @@ fastly_s3_logging 's3_logging' do
   bucket_name 'cwebber_test_logs'
   notifies :activate_latest, 'fastly_service[cwebber_test]', :delayed
 end
-
