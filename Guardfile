@@ -6,4 +6,3 @@ guard :rspec, cmd: 'rspec' do
   watch(%r{^recipes/(.+)\.rb$})
   watch('spec/spec_helper.rb') { 'spec' }
 end
-
