@@ -2,8 +2,13 @@
 driver:
   name: vagrant
 
+verifier:
+  name: inspec
+
 provisioner:
   name: chef_zero
+  deprecations_as_errors: true
+  chef_license: accept-no-persist
 
 platforms:
   - name: amazonlinux-2
