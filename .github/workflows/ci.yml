@@ -17,6 +17,8 @@ jobs:
         uses: actionshub/chef-delivery@master
         env:
           CHEF_LICENSE: accept-no-persist
+        with:
+          gems: "fastly"
 
   yamllint:
     runs-on: ubuntu-latest
@@ -45,8 +47,8 @@ jobs:
           - debian-10
           - centos-7
           - centos-8
-          - ubuntu-18.04
-          - ubuntu-20.04
+          - ubuntu-1804
+          - ubuntu-2004
         suite:
           - 'default'
       fail-fast: false
@@ -64,7 +66,6 @@ jobs:
         with:
           suite: ${{ matrix.suite }}
           os: ${{ matrix.os }}
-          gems: "fastly"
       - name: Print debug output on failure
         if: failure()
         run: |
