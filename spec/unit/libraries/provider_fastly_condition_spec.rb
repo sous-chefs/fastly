@@ -116,6 +116,7 @@ describe Chef::Provider::FastlyCondition do
       @new_resource.api_key('an_api_key')
       @new_resource.service('service_name')
       @new_resource.statement('statement')
+      @new_resource.type('request')
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
