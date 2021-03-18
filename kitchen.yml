@@ -23,3 +23,11 @@ suites:
   - name: default
     run_list:
       - recipe[fastly::default]
+  - name: service
+    run_list:
+      - recipe[fastly_test::service]
+    attributes:
+      fastly:
+        api_key: <%= ENV.fetch('FASTLY_API_KEY') %>
+        aws_access_key: <%= ENV.fetch('AWS_ACCESS_KEY_ID') %>
+        aws_secret_key: <%= ENV.fetch('AWS_SECRET_ACCESS_KEY') %>

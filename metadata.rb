@@ -8,6 +8,4 @@ source_url        'https://github.com/sous-chefs/fastly'
 issues_url        'https://github.com/sous-chefs/fastly/issues'
 chef_version      '>= 12.10'
 
-gem              'fastly'
-
 supports         'any'
