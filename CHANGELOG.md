@@ -1,5 +1,7 @@
 # yum-amazon Cookbook CHANGELOG
 
+## Unreleased
+
 ## v0.5.0 (2018-01-29)
 
 ## 0.6.0 - *2021-03-22*
