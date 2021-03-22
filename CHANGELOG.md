@@ -2,7 +2,7 @@
 
 ## v0.5.0 (2018-01-29)
 
-## Unreleased
+## 0.6.0 - *2021-03-22*
 
 - Sous Chefs Adoption
 - Various Cookstyle Fixes
