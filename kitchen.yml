@@ -7,6 +7,7 @@ verifier:
 
 provisioner:
   name: chef_zero
+  product_version: 15
   deprecations_as_errors: true
   chef_license: accept-no-persist
 
