@@ -20,7 +20,7 @@ require 'libraries/provider_fastly_healthcheck'
 require 'libraries/resource_fastly_healthcheck'
 
 describe Chef::Provider::FastlyHealthcheck do
-  let(:node) { stub_node(platform: 'ubuntu', version: '12.04') }
+  let(:node) { stub_node(platform: 'ubuntu', version: '20.04') }
   let(:run_context) { Chef::RunContext.new(node, {}, nil) }
 
   let(:resource) do

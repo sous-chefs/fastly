@@ -30,7 +30,7 @@ class Chef
       attribute :service, kind_of: String, required: true
       attribute :port, kind_of: Integer, default: 80
       attribute :ssl, kind_of: [TrueClass, FalseClass], default: false
-      attribute :address, kind_of: String, name_attribute: true, required: true
+      attribute :address, kind_of: String, name_attribute: true
       attribute :auto_loadbalance, kind_of: [TrueClass, FalseClass], default: false
       attribute :shield, kind_of: String
       attribute :healthcheck, kind_of: String
