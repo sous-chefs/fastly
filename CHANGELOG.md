@@ -2,9 +2,8 @@
 
 ## Unreleased
 
-- resolved cookstyle error: libraries/provider_fastly_healthcheck.rb:64:26 convention: `Style/RedundantBegin`
-- resolved cookstyle error: libraries/provider_fastly_healthcheck.rb:68:1 convention: `Layout/EmptyLinesAroundMethodBody`
-- resolved cookstyle error: libraries/provider_fastly_healthcheck.rb:68:1 convention: `Layout/TrailingWhitespace`
+- Cookstyle fixes
+
 ## v0.5.0 (2018-01-29)
 
 ## 0.6.0 - *2021-03-22*
