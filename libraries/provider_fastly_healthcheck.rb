@@ -61,12 +61,10 @@ class Chef
       end
 
       def healthcheck
-        @healthcheck ||= begin
-          fastly_client.list_healthchecks(
+        @healthcheck ||= fastly_client.list_healthchecks(
             service_id: service.id,
             version: service.version.number
           ).select { |b| b.name == new_resource.name }.first
-        end
       end
 
       def create_healthcheck
