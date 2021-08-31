@@ -1,6 +1,6 @@
 # yum-amazon Cookbook CHANGELOG
 
-## Unreleased
+## 0.6.3 - *2021-08-31*
 
 - Standardise files with files in sous-chefs/repo-management
 
