@@ -1,5 +1,7 @@
 # yum-amazon Cookbook CHANGELOG
 
+## Unreleased
+
 ## 0.6.4 - *2023-02-13*
 
 - Remove delivery folder
