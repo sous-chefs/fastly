@@ -2,6 +2,8 @@
 
 ## 0.6.5 - *2023-02-13*
 
+- Standardise files with files in sous-chefs/repo-management
+
 ## 0.6.4 - *2023-02-13*
 
 - Remove delivery folder
