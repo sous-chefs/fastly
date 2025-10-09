@@ -42,18 +42,18 @@ describe Chef::Provider::FastlyResponse do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
       allow(@provider.fastly_client).to receive(:list_response_objects) \
         .and_return([
-          double(Fastly::ResponseObject, name: 'an_response'),
-          double(Fastly::ResponseObject, name: 'another_response'),
-      ])
+                      double(Fastly::ResponseObject, name: 'an_response'),
+                      double(Fastly::ResponseObject, name: 'another_response'),
+                    ])
     end
 
     it 'returns response object if response name matches' do
@@ -73,13 +73,13 @@ describe Chef::Provider::FastlyResponse do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:create_response_object) \
         .and_return(double(Fastly::ResponseObject, name: 'an_response'))

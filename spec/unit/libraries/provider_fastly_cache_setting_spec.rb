@@ -65,9 +65,9 @@ describe Chef::Provider::FastlyCacheSetting do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service, name: 'service_name', id: '1234abc'),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-        ])
+                      double(Fastly::Service, name: 'service_name', id: '1234abc'),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
     end
 
     it 'returns service object if service name exists' do
@@ -87,19 +87,19 @@ describe Chef::Provider::FastlyCacheSetting do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:list_cache_settings) \
         .and_return([
-          double(Fastly::CacheSetting, name: 'an_cache_setting'),
-          double(Fastly::CacheSetting, name: 'an_second_setting'),
-      ])
+                      double(Fastly::CacheSetting, name: 'an_cache_setting'),
+                      double(Fastly::CacheSetting, name: 'an_second_setting'),
+                    ])
     end
 
     it 'returns cache_setting object if cache_setting name matches' do
@@ -119,13 +119,13 @@ describe Chef::Provider::FastlyCacheSetting do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:create_cache_setting) \
         .and_return(double(Fastly::CacheSetting, name: 'an_new_cache_setting'))

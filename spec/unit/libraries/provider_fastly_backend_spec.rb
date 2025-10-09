@@ -65,9 +65,9 @@ describe Chef::Provider::FastlyBackend do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service, name: 'service_name', id: '1234abc'),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-        ])
+                      double(Fastly::Service, name: 'service_name', id: '1234abc'),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
     end
 
     it 'returns service object if service name exists' do
@@ -87,19 +87,19 @@ describe Chef::Provider::FastlyBackend do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
       allow(@provider.fastly_client).to receive(:list_backends) \
         .and_return([
-          double(Fastly::Backend, name: 'backend.domain.name', address: 'backend.domain.name'),
-          double(Fastly::Backend, name: 'backend.domain.name_http', address: 'backend.domain.name'),
-          double(Fastly::Backend, name: 'example-2.name', address: 'example-2.name'),
-      ])
+                      double(Fastly::Backend, name: 'backend.domain.name', address: 'backend.domain.name'),
+                      double(Fastly::Backend, name: 'backend.domain.name_http', address: 'backend.domain.name'),
+                      double(Fastly::Backend, name: 'example-2.name', address: 'example-2.name'),
+                    ])
     end
 
     it 'returns backend object if backend name matches' do
@@ -119,13 +119,13 @@ describe Chef::Provider::FastlyBackend do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:create_backend) \
         .and_return(double(Fastly::Backend, name: 'backend.domain.name', address: 'backend.domain.name'))

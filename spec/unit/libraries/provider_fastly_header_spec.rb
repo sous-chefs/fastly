@@ -67,9 +67,9 @@ describe Chef::Provider::FastlyHeader do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service, name: 'service_name', id: '1234abc'),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-        ])
+                      double(Fastly::Service, name: 'service_name', id: '1234abc'),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
     end
 
     it 'returns service object if service name exists' do
@@ -89,19 +89,19 @@ describe Chef::Provider::FastlyHeader do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:list_headers) \
         .and_return([
-          double(Fastly::Header, name: 'an_header'),
-          double(Fastly::Header, name: 'an_second_header'),
-      ])
+                      double(Fastly::Header, name: 'an_header'),
+                      double(Fastly::Header, name: 'an_second_header'),
+                    ])
     end
 
     it 'returns header object if header name matches' do
@@ -121,13 +121,13 @@ describe Chef::Provider::FastlyHeader do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:create_header) \
         .and_return(double(Fastly::Header, name: 'an_new_header'))

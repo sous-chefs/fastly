@@ -41,19 +41,19 @@ describe Chef::Provider::FastlyS3Logging do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:list_s3_loggings) \
         .and_return([
-          double(Fastly::S3Logging, name: 'an_s3'),
-          double(Fastly::S3Logging, name: 'an_second_s3'),
-      ])
+                      double(Fastly::S3Logging, name: 'an_s3'),
+                      double(Fastly::S3Logging, name: 'an_second_s3'),
+                    ])
     end
 
     it 'returns an s3_logging object if s3_logging name matches' do
@@ -73,13 +73,13 @@ describe Chef::Provider::FastlyS3Logging do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:create_s3_logging) \
         .and_return(double(Fastly::S3Logging, name: 'an_new_s3'))
