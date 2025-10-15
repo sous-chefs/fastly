@@ -41,18 +41,18 @@ describe Chef::Provider::FastlyGzip do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
       allow(@provider.fastly_client).to receive(:list_gzips) \
         .and_return([
-          double(Fastly::Gzip, name: 'an_gzip'),
-          double(Fastly::Gzip, name: 'another_gzip'),
-      ])
+                      double(Fastly::Gzip, name: 'an_gzip'),
+                      double(Fastly::Gzip, name: 'another_gzip'),
+                    ])
     end
 
     it 'returns gzip object if gzip name matches' do
@@ -72,13 +72,13 @@ describe Chef::Provider::FastlyGzip do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service,
-           name: 'service_name',
-           id: '1234abc',
-           version: double(Fastly::Version, number: 10)
-          ),
-          double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-      ])
+                      double(Fastly::Service,
+                       name: 'service_name',
+                       id: '1234abc',
+                       version: double(Fastly::Version, number: 10)
+                      ),
+                      double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                    ])
 
       allow(@provider.fastly_client).to receive(:create_gzip) \
         .and_return(double(Fastly::Gzip, name: 'an_gzip'))
