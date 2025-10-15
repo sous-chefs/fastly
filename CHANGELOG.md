@@ -1,5 +1,12 @@
 # yum-amazon Cookbook CHANGELOG
 
+## [0.6.16](https://github.com/sous-chefs/fastly/compare/v0.6.15...v0.6.16) (2025-10-15)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#51](https://github.com/sous-chefs/fastly/issues/51)) ([a37ddaf](https://github.com/sous-chefs/fastly/commit/a37ddaf058ff8521cae2b7ecb1aaa4660414b486))
+
 ## 0.6.5 - *2023-02-13*
 
 * Standardise files with files in sous-chefs/repo-management
