@@ -64,9 +64,9 @@ describe Chef::Provider::FastlyService do
 
       allow(@provider.fastly_client).to receive(:list_services) \
         .and_return([
-          double(Fastly::Service, name: 'service_name', service_id: '1234abc'),
-          double(Fastly::Service, name: 'another_service', service_id: 'cba4321'),
-        ])
+                      double(Fastly::Service, name: 'service_name', service_id: '1234abc'),
+                      double(Fastly::Service, name: 'another_service', service_id: 'cba4321'),
+                    ])
     end
 
     it 'returns service object if service name exists' do

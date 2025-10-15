@@ -28,7 +28,7 @@ class Chef
 
       attribute :entries, kind_of: Array, required: true, callbacks: {
         'entries must be an array of valid ip addresses as strings' => proc do |entries|
-          entries.all? { |entry| (entry.is_a?(String) && valid_ip?(entry)) }
+          entries.all? { |entry| entry.is_a?(String) && valid_ip?(entry) }
         end,
       }
 

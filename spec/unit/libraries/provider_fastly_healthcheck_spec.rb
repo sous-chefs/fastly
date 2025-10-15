@@ -35,22 +35,22 @@ describe Chef::Provider::FastlyHealthcheck do
   before(:each) do
     allow(provider.fastly_client).to receive(:list_services) \
       .and_return([
-        double(Fastly::Service,
-         name: 'service_name',
-         id: '1234abc',
-         version: double(Fastly::Version, number: 10)
-        ),
-        double(Fastly::Service, name: 'another_service', id: 'cba4321'),
-    ])
+                    double(Fastly::Service,
+                     name: 'service_name',
+                     id: '1234abc',
+                     version: double(Fastly::Version, number: 10)
+                    ),
+                    double(Fastly::Service, name: 'another_service', id: 'cba4321'),
+                  ])
   end
 
   describe '#healthcheck' do
     before(:each) do
       allow(provider.fastly_client).to receive(:list_healthchecks) \
         .and_return([
-          double(Fastly::Healthcheck, name: 'an_healthcheck'),
-          double(Fastly::Healthcheck, name: 'an_second_healthcheck'),
-      ])
+                      double(Fastly::Healthcheck, name: 'an_healthcheck'),
+                      double(Fastly::Healthcheck, name: 'an_second_healthcheck'),
+                    ])
     end
 
     it 'returns a healthcheck object if healthcheck name matches' do
