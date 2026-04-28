@@ -10,7 +10,7 @@
 
 This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of Chef cookbook maintainers working together to maintain important cookbooks. If you’d like to know more please visit sous-chefs.org or come chat with us on the Chef Community Slack in #sous-chefs.
 
-# EXPERIMENTAL
+## EXPERIMENTAL
 
 This cookbook will provide resources for working with Fastly Services.
 

@@ -75,6 +75,23 @@ end
 RSpec.describe 'fastly custom resources' do
   let(:client) { instance_double('FastlyClient') }
   let(:service) { FastlyObject.new('service_name') }
+  let(:fastly_resources) do
+    %i(
+      fastly_acl
+      fastly_backend
+      fastly_cache_setting
+      fastly_condition
+      fastly_domain
+      fastly_gzip
+      fastly_header
+      fastly_healthcheck
+      fastly_request_setting
+      fastly_response
+      fastly_s3_logging
+      fastly_service
+      fastly_syslog_logging
+    )
+  end
 
   before do
     stub_const('Fastly', Class.new)
@@ -121,40 +138,12 @@ RSpec.describe 'fastly custom resources' do
 
   it 'converges every Fastly custom resource' do
     expect do
-      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '22.04', step_into: %i(
-        fastly_acl
-        fastly_backend
-        fastly_cache_setting
-        fastly_condition
-        fastly_domain
-        fastly_gzip
-        fastly_header
-        fastly_healthcheck
-        fastly_request_setting
-        fastly_response
-        fastly_s3_logging
-        fastly_service
-        fastly_syslog_logging
-      )).converge('fastly_test::all_resources')
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '22.04', step_into: fastly_resources).converge('fastly_test::all_resources')
     end.not_to raise_error
   end
 
   it 'creates missing Fastly API objects' do
-    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '22.04', step_into: %i(
-      fastly_acl
-      fastly_backend
-      fastly_cache_setting
-      fastly_condition
-      fastly_domain
-      fastly_gzip
-      fastly_header
-      fastly_healthcheck
-      fastly_request_setting
-      fastly_response
-      fastly_s3_logging
-      fastly_service
-      fastly_syslog_logging
-    )).converge('fastly_test::all_resources')
+    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '22.04', step_into: fastly_resources).converge('fastly_test::all_resources')
 
     expect(client).to have_received(:create_service)
     expect(client).to have_received(:create_domain)
