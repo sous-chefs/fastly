@@ -6,7 +6,6 @@ description       'Resources for Configuring Fastly Services'
 version           '0.6.16'
 source_url        'https://github.com/sous-chefs/fastly'
 issues_url        'https://github.com/sous-chefs/fastly/issues'
-# TODO(ramereth): This is still using the old style provider/resources and does not work on >= 16
-chef_version      '>= 12.10', '< 16.0'
+chef_version      '>= 16.0'
 
 supports 'any'
