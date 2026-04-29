@@ -7,23 +7,23 @@ verifier:
 
 provisioner:
   name: chef_zero
-  product_version: 15
+  product_version: 16
   deprecations_as_errors: true
   chef_license: accept-no-persist
 
 platforms:
-  - name: amazonlinux-2
-  - name: centos-7
-  - name: centos-8
-  - name: debian-10
-  - name: debian-9
-  - name: ubuntu-18.04
+  - name: amazonlinux-2023
+  - name: centos-stream-9
+  - name: debian-11
+  - name: debian-12
   - name: ubuntu-20.04
+  - name: ubuntu-22.04
+  - name: ubuntu-24.04
 
 suites:
   - name: default
     run_list:
-      - recipe[fastly::default]
+      - recipe[fastly_test::default]
   - name: service
     run_list:
       - recipe[fastly_test::service]

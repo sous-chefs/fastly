@@ -10,11 +10,31 @@
 
 This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of Chef cookbook maintainers working together to maintain important cookbooks. If you’d like to know more please visit sous-chefs.org or come chat with us on the Chef Community Slack in #sous-chefs.
 
-# EXPERIMENTAL
+## EXPERIMENTAL
 
 This cookbook will provide resources for working with Fastly Services.
 
 It is completly a work in progress. Please contact <cwebber@chef.io> with any questions.
+
+## Resources
+
+* [fastly_acl](documentation/fastly_acl.md)
+* [fastly_backend](documentation/fastly_backend.md)
+* [fastly_cache_setting](documentation/fastly_cache_setting.md)
+* [fastly_condition](documentation/fastly_condition.md)
+* [fastly_domain](documentation/fastly_domain.md)
+* [fastly_gzip](documentation/fastly_gzip.md)
+* [fastly_header](documentation/fastly_header.md)
+* [fastly_healthcheck](documentation/fastly_healthcheck.md)
+* [fastly_request_setting](documentation/fastly_request_setting.md)
+* [fastly_response](documentation/fastly_response.md)
+* [fastly_s3_logging](documentation/fastly_s3_logging.md)
+* [fastly_service](documentation/fastly_service.md)
+* [fastly_syslog_logging](documentation/fastly_syslog_logging.md)
+
+## Migration
+
+See [migration.md](migration.md) for the Chef 16 custom resource migration notes and [LIMITATIONS.md](LIMITATIONS.md) for current support limitations.
 
 ## Contributors
 

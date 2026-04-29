@@ -1,5 +1,3 @@
-include_recipe 'fastly::default'
-
 cwebber_test = fastly_service 'cwebber_test' do
   api_key node['fastly']['api_key']
 end
