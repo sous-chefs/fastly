@@ -1,5 +1,21 @@
 # yum-amazon Cookbook CHANGELOG
 
+## [2.0.0](https://github.com/sous-chefs/fastly/compare/v1.0.0...v2.0.0) (2026-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate fastly to custom resources ([#57](https://github.com/sous-chefs/fastly/issues/57))
+
+### Features
+
+* migrate fastly to custom resources ([#57](https://github.com/sous-chefs/fastly/issues/57)) ([fbbacf8](https://github.com/sous-chefs/fastly/commit/fbbacf83a1c1f65f02b9b583da2b110bfe6e9d12))
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#51](https://github.com/sous-chefs/fastly/issues/51)) ([a37ddaf](https://github.com/sous-chefs/fastly/commit/a37ddaf058ff8521cae2b7ecb1aaa4660414b486))
+
 ## [1.0.0](https://github.com/sous-chefs/fastly/compare/v0.6.16...v1.0.0) (2026-04-29)
 
 
