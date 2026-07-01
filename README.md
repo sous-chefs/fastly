@@ -34,7 +34,7 @@ It is completly a work in progress. Please contact <cwebber@chef.io> with any qu
 
 ## Migration
 
-See [migration.md](migration.md) for the Chef 16 custom resource migration notes and [LIMITATIONS.md](LIMITATIONS.md) for current support limitations.
+See [migration.md](migration.md) for the Chef 16 custom resource migration notes and [AGENTS.md](AGENTS.md) for current support limitations.
 
 ## Contributors
 
